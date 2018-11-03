@@ -1,0 +1,13 @@
+.login-card {
+    width: 578px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 10%;
+}
+.mat-h2 {
+    padding-top: 20px;
+}
+.btn {
+    margin: 2px;
+    width: 150px;
+}

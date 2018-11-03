@@ -1,0 +1,97 @@
+<mat-card class="login-card">
+    <mat-tab-group mat-stretch-tabs dynamicHeight>
+
+        <mat-tab label="I'm a student">
+
+            <h2 class="mat-h2">TAKE A QUIZ - Java Advanced Project</h2>
+            <p> Please select a test room and enter your email to start the quiz</p>
+
+            <form class="form-md"
+                  autocomplete="none">
+
+                <mat-form-field class="full-width">
+                    <mat-select placeholder="Select a test room">
+                        <mat-option *ngFor="let option of testRooms" [value]="option.value">
+                            {{option.text}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <input matInput
+                           placeholder="Enter your email address *"
+                           [formControl]="studentEmail"
+                           autocomplete="none">
+                    <mat-error *ngIf="studentEmail.hasError('email') && !studentEmail.hasError('required')">
+                        Please enter a valid email address
+                    </mat-error>
+                    <mat-error *ngIf="studentEmail.hasError('required')">
+                        Email is required
+                    </mat-error>
+                </mat-form-field>
+
+            </form>
+
+            <button mat-raised-button class="btn"
+                    (click)="startQuiz()"
+                    aria-label="Start my quiz">
+                Start my quiz
+            </button>
+
+            <p *ngIf="startQuizError"
+               class="mat-error"> Invalid email or test room. Please try again.</p>
+            <p *ngIf="quizConnectionError"
+               class="mat-error"> Can't connect to the server. Please try again or call support.</p>
+
+        </mat-tab>
+
+        <mat-tab label="I'm a teacher">
+
+            <h2 class="mat-h2">MANAGE A QUIZ - Java Advanced Project</h2>
+            <p> Please use teacher@email.com / Teacher1234 to sign in</p>
+
+            <form class="form-md"
+                  autocomplete="none">
+
+                <mat-form-field class="full-width">
+                    <input matInput
+                           placeholder="Enter your email address *"
+                           [formControl]="teacherEmail"
+                           autocomplete="none">
+                    <mat-error *ngIf="teacherEmail.hasError('email') && !teacherEmail.hasError('required')">
+                        Please enter a valid email address
+                    </mat-error>
+                    <mat-error *ngIf="teacherEmail.hasError('required')">
+                        Email is required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+
+                    <input matInput
+                           placeholder="Enter your password *"
+                           type="password"
+                           [formControl]="password"
+                           autocomplete="none">
+                    <mat-error *ngIf="password.hasError('required')">
+                        Password is required
+                    </mat-error>
+                </mat-form-field>
+
+            </form>
+
+            <button mat-raised-button class="btn"
+                    (click)="signIn()"
+                    aria-label="Sign in">
+                Sign in
+            </button>
+
+            <p *ngIf="signInError"
+               class="mat-error"> Invalid email or password. Please try again.</p>
+            <p *ngIf="signInConnectionError"
+               class="mat-error"> Can't connect to the server. Please try again or call support.</p>
+
+        </mat-tab>
+
+    </mat-tab-group>
+</mat-card>
