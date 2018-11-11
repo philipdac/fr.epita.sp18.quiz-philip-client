@@ -3,27 +3,23 @@
 
         <mat-tab label="I'm a student">
 
-            <h2 class="mat-h2">TAKE A QUIZ - Java Advanced Project</h2>
-            <p> Please select a test room and enter your email to start the quiz</p>
+            <h2 class="mat-h2">TAKE A QUIZ</h2>
+            <p> Please use JAVA as the quiz-room name and any email address to start the quiz</p>
 
             <form class="form-md"
                   autocomplete="none">
 
                 <mat-form-field class="full-width">
-                    <mat-select placeholder="Select a test room">
-                        <mat-option *ngFor="let option of testRooms" [value]="option.value">
-                            {{option.text}}
-                        </mat-option>
-                    </mat-select>
+                    <input matInput type="text" placeholder="Your quiz-room name" [formControl]="quizRoom">
                 </mat-form-field>
 
                 <mat-form-field class="full-width">
                     <input matInput
-                           placeholder="Enter your email address *"
+                           placeholder="Your email address *"
                            [formControl]="studentEmail"
                            autocomplete="none">
                     <mat-error *ngIf="studentEmail.hasError('email') && !studentEmail.hasError('required')">
-                        Please enter a valid email address
+                        Please input a valid email address
                     </mat-error>
                     <mat-error *ngIf="studentEmail.hasError('required')">
                         Email is required
@@ -47,8 +43,8 @@
 
         <mat-tab label="I'm a teacher">
 
-            <h2 class="mat-h2">MANAGE A QUIZ - Java Advanced Project</h2>
-            <p> Please use teacher@email.com / Teacher1234 to sign in</p>
+            <h2 class="mat-h2">MANAGE A QUIZ</h2>
+            <p> Please use teacher@email.com / Admin1234 to sign in</p>
 
             <form class="form-md"
                   autocomplete="none">
@@ -59,7 +55,7 @@
                            [formControl]="teacherEmail"
                            autocomplete="none">
                     <mat-error *ngIf="teacherEmail.hasError('email') && !teacherEmail.hasError('required')">
-                        Please enter a valid email address
+                        Please input a valid email address
                     </mat-error>
                     <mat-error *ngIf="teacherEmail.hasError('required')">
                         Email is required
@@ -67,7 +63,6 @@
                 </mat-form-field>
 
                 <mat-form-field class="full-width">
-
                     <input matInput
                            placeholder="Enter your password *"
                            type="password"

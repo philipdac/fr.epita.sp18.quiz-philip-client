@@ -11,8 +11,11 @@ import {AuthService} from '../../auth/auth.service';
     styleUrls: ['./signin.component.css']
 })
 export class SignInComponent implements OnInit {
-    testRooms: any;
+    quizRooms: any;
 
+    quizRoom = new FormControl('JAVA', [
+        Validators.required
+    ]);
     studentEmail = new FormControl('student@email.com', [
         Validators.required,
         Validators.email,
@@ -26,7 +29,6 @@ export class SignInComponent implements OnInit {
     ]);
 
     returnUrl: string;
-    defaultRoute = '/identities';
 
     startQuizError = false;
     quizConnectionError = false;
@@ -51,18 +53,24 @@ export class SignInComponent implements OnInit {
         this.authService.clearSession();
 
         // get return url from route parameters or default
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || this.defaultRoute;
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
     }
 
     startQuiz() {
+        this.router.navigateByUrl('/exam');
     }
 
-    signIn() {
+    signIn(serverReady = false) {
         this.signInError = false;
         this.signInConnectionError = false;
 
         if (this.teacherEmail.invalid) {
             this.signInError = true;
+            return;
+        }
+
+        if (!serverReady) {
+            this.router.navigateByUrl(this.returnUrl);
             return;
         }
 
