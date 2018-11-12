@@ -1,18 +1,25 @@
 <mat-toolbar>
     <mat-toolbar-row>
-        <h1 class="mat-headline">QUIZ Project</h1>
+        <h1 class="mat-headline">QUIZ User : {{userName}}</h1>
         <span class="fill-space"></span>
         <div class="button-row">
             <a class="ml-md"
                mat-raised-button
-               routerLink="/identities">
-                <mat-icon>perm_contact_calendar</mat-icon> Identities
+               routerLink="/quizzes">
+                <mat-icon>format_list_numbered</mat-icon>
+                Quizzes
             </a>
             <a class="ml-md"
                mat-raised-button
-               routerLink="/document"
-               *ngIf="false">
-                <mat-icon>list</mat-icon> Document
+               routerLink="/identities">
+                <mat-icon>group</mat-icon>
+                Identities
+            </a>
+            <a class="ml-md"
+               mat-raised-button
+               routerLink="/readme">
+                <mat-icon>info</mat-icon>
+                Read me
             </a>
             <button class="ml-md"
                     mat-raised-button

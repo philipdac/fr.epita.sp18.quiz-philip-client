@@ -30,8 +30,8 @@ export class IdentityTableComponent implements OnInit
     displayedColumns = ['select', 'uid', 'name', 'email'];
 
     constructor(
-        private dataService: IdentityService,
-        private notify: NotifyService,
+        private _data: IdentityService,
+        private _notify: NotifyService,
     )
     {
         this.dataSource = new MatTableDataSource();
@@ -44,14 +44,14 @@ export class IdentityTableComponent implements OnInit
 
     getIdentities(filter: string)
     {
-        this.dataService
+        this._data
             .list({ filter: filter })
             .pipe(take(1))
             .subscribe(resp =>
             {
                 if (resp['hasError']) {
                     console.log('get resp', resp);
-                    this.notify.error('Server\'s message : ' + resp['errorMessage']);
+                    this._notify.error('Server\'s message : ' + resp['errorMessage']);
                     return;
                 }
 

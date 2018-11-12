@@ -1,12 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { MatDialogConfig, MatDialog } from '@angular/material';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {Title} from '@angular/platform-browser';
+import {MatDialogConfig, MatDialog} from '@angular/material';
 
-import { DialogConfirmCancelComponent } from '../dialog-confirm-cancel/dialog-confirm-cancel.component';
-import { IdentityResponse } from '../../models/identity-response';
-import { IdentityTableComponent } from '../identity-table/identity-table.component';
-import { IdentityService } from '../../services/identity.service';
-import { NotifyService } from '../../services/notify.service';
+import {DialogConfirmCancelComponent} from '../dialog-confirm-cancel/dialog-confirm-cancel.component';
+import {IdentityResponse} from '../../models/identity-response';
+import {IdentityTableComponent} from '../identity-table/identity-table.component';
+import {IdentityService} from '../../services/identity.service';
+import {NotifyService} from '../../services/notify.service';
 
 @Component({
     selector: 'app-identity-list',
@@ -14,34 +14,31 @@ import { NotifyService } from '../../services/notify.service';
     styleUrls: ['./identity-list.component.css'],
     providers: [IdentityService, NotifyService]
 })
-export class IdentityListComponent implements OnInit
-{
+export class IdentityListComponent implements OnInit {
     @ViewChild(IdentityTableComponent) idTable: IdentityTableComponent;
 
     searchValue = '';
-    emptyRow: IdentityResponse = { 'id': -1, 'name': '', 'email': '' };
+    emptyRow: IdentityResponse = {'id': -1, 'name': '', 'email': ''};
     selectedRow: IdentityResponse = this.emptyRow;
     identities;
 
     constructor(
-        private titleService: Title,
-        private dialog: MatDialog,
-        private notify: NotifyService,
-        private dataService: IdentityService
-    ) { }
-
-    ngOnInit()
-    {
-        this.titleService.setTitle('Identity list');
+        private _title: Title,
+        private _dialog: MatDialog,
+        private _notify: NotifyService,
+        private _data: IdentityService
+    ) {
     }
 
-    eventSelectRow(row)
-    {
+    ngOnInit() {
+        this._title.setTitle('Identity list');
+    }
+
+    eventSelectRow(row) {
         this.selectedRow = row;
     }
 
-    deleteIdentity()
-    {
+    deleteIdentity() {
         const dialogConfig = new MatDialogConfig();
 
         dialogConfig.disableClose = true;
@@ -51,27 +48,26 @@ export class IdentityListComponent implements OnInit
             title: 'Confirm to delete', line1: this.selectedRow.name, line2: this.selectedRow.email
         };
 
-        const dialogRef = this.dialog.open(DialogConfirmCancelComponent,
+        const dialogRef = this._dialog.open(DialogConfirmCancelComponent,
             dialogConfig);
 
         dialogRef.afterClosed().subscribe(
-            choice =>
-            {
-                if (!choice) { return; }
-                this.dataService
+            choice => {
+                if (!choice) {
+                    return;
+                }
+                this._data
                     .delete(this.selectedRow.id)
-                    .catch(resp =>
-                    {
+                    .catch(resp => {
                         console.log('deleteIdentity catch', resp);
-                        this.notify.error('Delete identity error. Please try again!');
+                        this._notify.error('Delete identity error. Please try again!');
                     })
-                    .then(resp =>
-                    {
+                    .then(resp => {
                         if (resp['hasError']) {
-                            this.notify.error('Server\'s message : ' + resp['errorMessage']);
+                            this._notify.error('Server\'s message : ' + resp['errorMessage']);
                             return;
                         }
-                        this.notify.success(`Identity "${this.selectedRow.name}" was deleted`);
+                        this._notify.success(`Identity "${this.selectedRow.name}" was deleted`);
                         this.selectedRow = this.emptyRow;
                         this.idTable.getIdentities(this.searchValue.trim());
                     });
@@ -79,8 +75,7 @@ export class IdentityListComponent implements OnInit
         );
     }
 
-    searchIdentity()
-    {
+    searchIdentity() {
         this.idTable.getIdentities(this.searchValue.trim());
     }
 

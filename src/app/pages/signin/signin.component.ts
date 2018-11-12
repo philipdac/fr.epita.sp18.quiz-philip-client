@@ -4,6 +4,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 
 import {AuthService} from '../../auth/auth.service';
+import {Constant} from '../../common/constant';
 
 @Component({
     selector: 'app-signin',
@@ -53,14 +54,14 @@ export class SignInComponent implements OnInit {
         this.authService.clearSession();
 
         // get return url from route parameters or default
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/readme';
     }
 
     startQuiz() {
         this.router.navigateByUrl('/exam');
     }
 
-    signIn(serverReady = false) {
+    signIn(devMode = true) {
         this.signInError = false;
         this.signInConnectionError = false;
 
@@ -69,7 +70,12 @@ export class SignInComponent implements OnInit {
             return;
         }
 
-        if (!serverReady) {
+        if (devMode) {
+            localStorage.setItem(Constant.userId, '1');
+            localStorage.setItem(Constant.userName, 'teacher@email.com');
+            localStorage.setItem(Constant.expiredKey, (new Date('2100-01-01').toISOString()));
+            localStorage.setItem(Constant.tokenKey, '1234567890');
+
             this.router.navigateByUrl(this.returnUrl);
             return;
         }
@@ -86,5 +92,6 @@ export class SignInComponent implements OnInit {
                 }
             }
         );
+
     }
 }

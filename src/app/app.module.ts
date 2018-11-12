@@ -43,6 +43,9 @@ import {DialogConfirmCancelComponent} from './components/dialog-confirm-cancel/d
 import {IdentityEditComponent} from './components/identity-edit/identity-edit.component';
 import {IdentityListComponent} from './components/identity-list/identity-list.component';
 import {IdentityTableComponent} from './components/identity-table/identity-table.component';
+import { QuizListComponent } from './components/quiz-list/quiz-list.component';
+import { ReadmeComponent } from './components/readme/readme.component';
+import { QuizListTableComponent } from './components/quiz-list-table/quiz-list-table.component';
 
 @NgModule({
     declarations: [
@@ -54,6 +57,9 @@ import {IdentityTableComponent} from './components/identity-table/identity-table
         IdentityTableComponent,
         IdentityEditComponent,
         IdentityListComponent,
+        QuizListComponent,
+        ReadmeComponent,
+        QuizListTableComponent,
     ],
     imports: [
         BrowserModule,

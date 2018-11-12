@@ -7,7 +7,7 @@
             "root": "",
             "sourceRoot": "src",
             "projectType": "application",
-            "prefix": "quiz",
+            "prefix": "app",
             "schematics": {},
             "architect": {
                 "build": {

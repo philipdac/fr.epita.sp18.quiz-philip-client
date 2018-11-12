@@ -1,0 +1,31 @@
+<mat-card class="dashboard-card">
+
+    <h2 class="mat-h2">Quiz list</h2>
+
+    <a mat-raised-button
+       routerLink="/quizzes/new"
+       aria-label="New quiz">
+        Add
+    </a>
+
+    <a mat-raised-button
+       routerLink="/quizzes/1"
+       [disabled]="true"
+       class="ml-md"
+       aria-label="Edit quiz">
+        Edit
+    </a>
+
+    <button mat-raised-button
+            (click)="deleteIdentity()"
+            [disabled]="true"
+            class="ml-md"
+            aria-label="Delete quiz">
+        Delete
+    </button>
+
+    <mat-card-content class="dashboard-card-content">
+        <app-quiz-list-table></app-quiz-list-table>
+    </mat-card-content>
+
+</mat-card>

@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import * as moment from 'moment';
 
 import { LoginRequest } from '../models/login-request';
+import { Constant } from '../common/constant';
 
 @Injectable()
 export class AuthService
@@ -14,11 +15,9 @@ export class AuthService
         private http: HttpClient,
         private router: Router
     ) { }
-    private loginUrl = '/login';
+
+    private loginUrl = '/api/login';
     private signInRoute = '/signin';
-    private tokenKey = 'iam_token';
-    private userKey = 'iam_user';
-    private expiredKey = 'iam_token_expired_at';
 
     private static parseJwt(token)
     {
@@ -29,7 +28,7 @@ export class AuthService
 
     public getToken()
     {
-        const token = localStorage.getItem(this.tokenKey);
+        const token = localStorage.getItem(Constant.tokenKey);
         if (token && moment().isBefore(this.getExpiration())) {
             return token;
         }
@@ -38,7 +37,7 @@ export class AuthService
 
     private getExpiration()
     {
-        let expiration = localStorage.getItem(this.expiredKey);
+        let expiration = localStorage.getItem(Constant.expiredKey);
         if (!expiration) {
             expiration = '2018-01-01';
         }
@@ -73,9 +72,9 @@ export class AuthService
     {
         if (bearer) {
             const decode = AuthService.parseJwt(bearer.substring(8));
-            localStorage.setItem(this.userKey, decode['sub']);
-            localStorage.setItem(this.expiredKey, (new Date((+decode['exp']) * 1000)).toISOString());
-            localStorage.setItem(this.tokenKey, bearer);
+            localStorage.setItem(Constant.userId, decode['sub']);
+            localStorage.setItem(Constant.expiredKey, (new Date((+decode['exp']) * 1000)).toISOString());
+            localStorage.setItem(Constant.tokenKey, bearer);
         }
     }
 
@@ -87,8 +86,9 @@ export class AuthService
 
     public clearSession()
     {
-        localStorage.removeItem(this.tokenKey);
-        localStorage.removeItem(this.userKey);
-        localStorage.removeItem(this.expiredKey);
+        localStorage.removeItem(Constant.tokenKey);
+        localStorage.removeItem(Constant.userId);
+        localStorage.removeItem(Constant.userName);
+        localStorage.removeItem(Constant.expiredKey);
     }
 }
