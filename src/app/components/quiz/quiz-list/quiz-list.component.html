@@ -1,0 +1,46 @@
+<mat-card class="dashboard-card">
+
+    <h2 class="mat-h2">Quiz list</h2>
+    <p>Select a quiz to manage it</p>
+
+    <button mat-raised-button
+            (click)="editQuiz(0)"
+            aria-label="New quiz">
+        New quiz
+    </button>
+
+    <a mat-raised-button
+       (click)="editQuiz(selectedRow.quizId)"
+       [disabled]="selectedRow.quizId <=0"
+       class="ml-md"
+       aria-label="Edit quiz">
+        Edit quiz
+    </a>
+
+    <button mat-raised-button
+            (click)="deleteQuiz()"
+            [disabled]="selectedRow.quizId <=0"
+            class="ml-md"
+            aria-label="Delete quiz">
+        Delete quiz
+    </button>
+
+    <button mat-raised-button
+            [disabled]="selectedRow.quizId <=0"
+            class="ml-md"
+            aria-label="Edit questions">
+        Edit questions
+    </button>
+
+    <button mat-raised-button
+            [disabled]="selectedRow.quizId <=0"
+            class="ml-md"
+            aria-label="Edit exams">
+        Edit exams
+    </button>
+
+    <mat-card-content class="dashboard-card-content">
+        <app-quiz-list-table (eventSelectRow)="eventSelectRow($event)"></app-quiz-list-table>
+    </mat-card-content>
+
+</mat-card>

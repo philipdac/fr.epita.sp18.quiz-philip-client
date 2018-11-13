@@ -1,0 +1,75 @@
+<div>
+    <mat-table #table
+               [dataSource]="dataSource"
+               matSort
+               aria-label="Elements">
+        <ng-container matColumnDef="select">
+            <mat-header-cell *matHeaderCellDef>Select</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <mat-checkbox disabled=true
+                              [checked]="selectedRow.quizId === row.quizId">
+                </mat-checkbox>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="quizId">
+            <mat-header-cell *matHeaderCellDef>Quiz Id</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.quizId}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="title">
+            <mat-header-cell *matHeaderCellDef
+                             mat-sort-header>Title</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.title}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="questionCount">
+            <mat-header-cell *matHeaderCellDef
+                             mat-sort-header>Number of questions</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <a href="#" *ngIf="row.questionCount">{{row.questionCount}} question(s)</a></mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="duration">
+            <mat-header-cell *matHeaderCellDef
+                             mat-sort-header>Duration</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.duration}} minutes</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="shuffleType">
+            <mat-header-cell *matHeaderCellDef
+                             mat-sort-header>Shuffle mode</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.shuffleType}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="examCount">
+            <mat-header-cell *matHeaderCellDef
+                             mat-sort-header>Number of exams</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <a href="#" *ngIf="row.examCount">{{row.examCount}} exam(s)</a></mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="teacherName">
+            <mat-header-cell *matHeaderCellDef
+                             mat-sort-header>Teacher</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.teacherName}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="examDetail">
+            <mat-cell *matCellDef="let row"></mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"
+                 (click)="$event.stopPropagation(); selectRow(row);"
+                 [style.background]="selectedRow.quizId === row.quizId ? 'lightgray' : ''"></mat-row>
+
+    </mat-table>
+
+    <mat-paginator #paginator
+                   [length]="dataSource.data.length"
+                   [pageIndex]="0"
+                   [pageSize]="20"
+                   [pageSizeOptions]="[10, 20, 30, 40]">
+    </mat-paginator>
+</div>
