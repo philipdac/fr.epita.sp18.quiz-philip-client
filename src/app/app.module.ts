@@ -40,12 +40,15 @@ import {NavBarComponent} from './pages/nav-bar/nav-bar.component';
 import {SignInComponent} from './pages/signin/signin.component';
 import {DialogConfirmCancelComponent} from './components/dialog-confirm-cancel/dialog-confirm-cancel.component';
 
+import {ReadmeComponent} from './components/readme/readme.component';
+
 import {IdentityEditComponent} from './components/identity-edit/identity-edit.component';
 import {IdentityListComponent} from './components/identity-list/identity-list.component';
 import {IdentityTableComponent} from './components/identity-table/identity-table.component';
-import { QuizListComponent } from './components/quiz-list/quiz-list.component';
-import { ReadmeComponent } from './components/readme/readme.component';
-import { QuizListTableComponent } from './components/quiz-list-table/quiz-list-table.component';
+
+import {QuizListComponent} from './components/quiz/quiz-list/quiz-list.component';
+import {QuizListTableComponent} from './components/quiz/quiz-list-table/quiz-list-table.component';
+import {QuizEditComponent} from './components/quiz/quiz-edit/quiz-edit.component';
 
 @NgModule({
     declarations: [
@@ -60,6 +63,7 @@ import { QuizListTableComponent } from './components/quiz-list-table/quiz-list-t
         QuizListComponent,
         ReadmeComponent,
         QuizListTableComponent,
+        QuizEditComponent,
     ],
     imports: [
         BrowserModule,
@@ -68,24 +72,26 @@ import { QuizListTableComponent } from './components/quiz-list-table/quiz-list-t
         FormsModule,
         HttpClientModule,
         LayoutModule,
+
+        MatButtonModule,
+        MatCardModule,
         MatCheckboxModule,
         MatDialogModule,
         MatFormFieldModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatSidenavModule,
+        MatGridListModule,
         MatIconModule,
         MatInputModule,
         MatListModule,
-        MatGridListModule,
-        MatCardModule,
         MatMenuModule,
-        MatSelectModule,
-        MatTabsModule,
-        MatTableModule,
         MatPaginatorModule,
-        MatSortModule,
+        MatSelectModule,
+        MatSidenavModule,
         MatSnackBarModule,
+        MatSortModule,
+        MatTableModule,
+        MatTabsModule,
+        MatToolbarModule,
+
         ReactiveFormsModule,
         RouterModule.forRoot(
             AppRoutes.AuthRoute
@@ -102,7 +108,7 @@ import { QuizListTableComponent } from './components/quiz-list-table/quiz-list-t
         NotifyService
     ],
     bootstrap: [AppComponent],
-    entryComponents: [DialogConfirmCancelComponent]
+    entryComponents: [DialogConfirmCancelComponent, QuizEditComponent]
 })
 export class AppModule {
 }

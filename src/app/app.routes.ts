@@ -8,7 +8,7 @@ import {ReadmeComponent} from './components/readme/readme.component';
 import {IdentityEditComponent} from './components/identity-edit/identity-edit.component';
 import {IdentityListComponent} from './components/identity-list/identity-list.component';
 
-import {QuizListComponent} from './components/quiz-list/quiz-list.component';
+import {QuizListComponent} from './components/quiz/quiz-list/quiz-list.component';
 
 export const RouteDef = [
     {path: 'readme', component: ReadmeComponent},

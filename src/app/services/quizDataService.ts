@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
 
 @Injectable()
-export class QuizService extends DataService
+export class QuizDataService extends DataService
 {
     constructor(http: HttpClient)
     {

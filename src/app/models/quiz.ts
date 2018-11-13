@@ -1,4 +1,4 @@
-export class QuizSnapshot {
+export class Quiz {
     quizId = 0;
     title = '';
     duration = 0;
@@ -6,5 +6,4 @@ export class QuizSnapshot {
     questionCount = 0;
     examCount = 0;
     teacherId = 0;
-    teacherName = '';
 }
