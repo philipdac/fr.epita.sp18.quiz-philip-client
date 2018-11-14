@@ -8,6 +8,9 @@ body { margin: 0; }
 .fill-space {
   flex: 1 1 auto;
 }
+.mb-none {
+    margin-bottom: 0 !important;
+}
 .mb-md {
     margin-bottom: 16px !important;
 }
@@ -31,6 +34,18 @@ body { margin: 0; }
 }
 .ml-xl {
     margin-left: 64px !important;
+}
+.mr-none {
+    margin-right: 0 !important;
+}
+.mr-md {
+    margin-right: 16px !important;
+}
+.mr-lg {
+    margin-right: 32px !important;
+}
+.mr-xl {
+    margin-right: 64px !important;
 }
 .flex-column {
   display: flex;

@@ -1,0 +1,12 @@
+.single-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.single-row > * {
+    width: 100%;
+}
+
+.mat-dialog-content {
+    display: inline;
+}

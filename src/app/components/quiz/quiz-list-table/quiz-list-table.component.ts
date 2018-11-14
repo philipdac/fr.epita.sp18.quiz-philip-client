@@ -1,10 +1,11 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {SelectionModel} from '@angular/cdk/collections';
 
 import {Constant} from 'app/common/constant';
-import {QuizDataService} from 'app/services/quizDataService';
+import {QuizDataService} from 'app/services/quiz-data.service';
 import {QuizSnapshot} from 'app/models/quiz-snapshot';
+import {User} from '../../../common/user';
 
 @Component({
     selector: 'app-quiz-list-table',
@@ -12,46 +13,37 @@ import {QuizSnapshot} from 'app/models/quiz-snapshot';
     styleUrls: ['./quiz-list-table.component.css'],
     providers: [QuizDataService]
 })
-export class QuizListTableComponent implements OnInit, OnDestroy {
+export class QuizListTableComponent implements OnInit, OnChanges {
+    @Input() quizzes: QuizSnapshot[];
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
-
     @Output() eventSelectRow = new EventEmitter<QuizSnapshot>();
 
-    teacherId: number;
-
+    user: User;
     dataSource: MatTableDataSource<QuizSnapshot>;
+
     emptyRow: QuizSnapshot = new QuizSnapshot();
     selectedRow: QuizSnapshot = this.emptyRow;
     selection = new SelectionModel<QuizSnapshot>(true, []);
 
-    displayedColumns = ['select', 'quizId', 'title', 'questionCount', 'duration', 'shuffleType', 'examCount', 'teacherName'];
+    displayedColumns = ['select', 'id', 'title', 'questionCount', 'duration', 'examCount', 'teacherName'];
 
     dataObservable: any;
 
-    constructor(
-        private _data: QuizDataService,
-    ) {
+    constructor() {
+        this.user = new User();
         this.dataSource = new MatTableDataSource();
     }
 
-    ngOnInit() {
-        this.teacherId = +localStorage.getItem(Constant.userId);
-
-        this.getData();
+    ngOnInit(): void {
+        this.dataSource.sort = this.sort;
     }
 
-    getData(): void {
-        this.dataObservable = this._data
-            .list({teacherId: this.teacherId})
-            .subscribe(resp => {
-                console.log('data', resp);
-                this.dataSource.data = resp as QuizSnapshot[];
-            });
-    }
-
-    ngOnDestroy() {
-        this.dataObservable.unsubscribe();
+    ngOnChanges(changes: SimpleChanges): void
+    {
+        if (changes.hasOwnProperty('quizzes') && this.quizzes) {
+            this.dataSource.data = this.quizzes;
+        }
     }
 
     selectRow(row) {

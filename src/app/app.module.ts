@@ -42,13 +42,16 @@ import {DialogConfirmCancelComponent} from './components/dialog-confirm-cancel/d
 
 import {ReadmeComponent} from './components/readme/readme.component';
 
-import {IdentityEditComponent} from './components/identity-edit/identity-edit.component';
-import {IdentityListComponent} from './components/identity-list/identity-list.component';
-import {IdentityTableComponent} from './components/identity-table/identity-table.component';
+import {IdentityEditComponent} from './components/identity/identity-edit/identity-edit.component';
+import {IdentityListComponent} from './components/identity/identity-list/identity-list.component';
+import {IdentityTableComponent} from './components/identity/identity-table/identity-table.component';
 
 import {QuizListComponent} from './components/quiz/quiz-list/quiz-list.component';
 import {QuizListTableComponent} from './components/quiz/quiz-list-table/quiz-list-table.component';
 import {QuizEditComponent} from './components/quiz/quiz-edit/quiz-edit.component';
+
+import { QuestionListComponent } from './components/question/question-list/question-list.component';
+import { QuestionEditComponent } from './components/question/question-edit/question-edit.component';
 
 @NgModule({
     declarations: [
@@ -64,6 +67,8 @@ import {QuizEditComponent} from './components/quiz/quiz-edit/quiz-edit.component
         ReadmeComponent,
         QuizListTableComponent,
         QuizEditComponent,
+        QuestionListComponent,
+        QuestionEditComponent,
     ],
     imports: [
         BrowserModule,

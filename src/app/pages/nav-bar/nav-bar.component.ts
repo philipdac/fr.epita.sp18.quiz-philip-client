@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import {Constant} from '../../common/constant';
+import {User} from '../../common/user';
 
 @Component({
     selector: 'app-nav-bar',
@@ -9,12 +10,12 @@ import {Constant} from '../../common/constant';
 })
 export class NavBarComponent implements OnInit
 {
-    userName: string;
+    user: User;
 
     constructor(
         private authService: AuthService,
     ) {
-        this.userName = localStorage.getItem(Constant.userName);
+        this.user = new User();
     }
 
     ngOnInit()

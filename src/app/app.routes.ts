@@ -5,10 +5,12 @@ import {LayoutComponent} from './pages/layout/layout.component';
 import {SignInComponent} from './pages/signin/signin.component';
 import {ReadmeComponent} from './components/readme/readme.component';
 
-import {IdentityEditComponent} from './components/identity-edit/identity-edit.component';
-import {IdentityListComponent} from './components/identity-list/identity-list.component';
+import {IdentityEditComponent} from 'app/components/identity/identity-edit/identity-edit.component';
+import {IdentityListComponent} from 'app/components/identity/identity-list/identity-list.component';
 
-import {QuizListComponent} from './components/quiz/quiz-list/quiz-list.component';
+import {QuizListComponent} from 'app/components/quiz/quiz-list/quiz-list.component';
+import {QuestionListComponent} from './components/question/question-list/question-list.component';
+import {QuestionEditComponent} from './components/question/question-edit/question-edit.component';
 
 export const RouteDef = [
     {path: 'readme', component: ReadmeComponent},
@@ -17,6 +19,8 @@ export const RouteDef = [
     {path: 'identities', component: IdentityListComponent},
 
     {path: 'quizzes', component: QuizListComponent},
+    {path: 'quizzes/:quizId/questions', component: QuestionListComponent},
+    {path: 'questions/:questionId', component: QuestionEditComponent},
 
     {path: '', component: ReadmeComponent},
     {path: '**', component: ReadmeComponent}

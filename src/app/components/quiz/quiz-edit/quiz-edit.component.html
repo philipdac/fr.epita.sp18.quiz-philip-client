@@ -1,3 +1,65 @@
-<p>
-  quiz-edit works!
-</p>
+<h2 mat-dialog-title class="mb-none">{{quiz.quizId > 0 ? "Quiz editing" : "Create a new quiz"}}</h2>
+
+<mat-dialog-content>
+    <div class="single-row">
+
+        <mat-form-field>
+            <input matInput
+                   type="text"
+                   [(ngModel)]="quiz.title"
+                   placeholder="Title"
+                   required/>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput
+                   type="number"
+                   [(ngModel)]="quiz.duration"
+                   placeholder="Duration in minutes"
+                   required/>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput
+                   type="text"
+                   [ngModel]="quiz.teacherId + ' / ' + user.userName"
+                   [readonly]="true"
+                   placeholder="Teacher (read only)"/>
+        </mat-form-field>
+
+        <div *ngIf="quiz.questions">
+            <span>This quiz has:</span><br>
+            <span class="ml-lg"> {{quiz.questions.length}} question(s)</span><br>
+            <span class="ml-lg"> {{quiz.exams.length}} related exam(s)</span>
+        </div>
+
+        <!--<mat-form-field>-->
+        <!--<mat-select [(ngModel)]="quiz.shuffleType"-->
+        <!--placeholder="Shuffle type"-->
+        <!--required>-->
+        <!--<mat-option *ngFor="let option of shuffleTypes"-->
+        <!--[value]="option.key">-->
+        <!--{{ option.value }}-->
+        <!--</mat-option>-->
+        <!--</mat-select>-->
+        <!--</mat-form-field>-->
+
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions fxLayoutAlign="end center">
+    <button mat-raised-button
+            (click)="save()"
+            [disabled]="!quiz.title || quiz.duration <= 0"
+            aria-label="Save quiz">
+        Save
+    </button>
+
+    <button mat-raised-button
+            (click)="close()"
+            class="ml-md"
+            aria-label="Close">
+        Close
+    </button>
+
+</mat-dialog-actions>

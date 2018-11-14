@@ -1,7 +1,12 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogRef, MatInputModule } from '@angular/material';
+
 import {Quiz} from 'app/models/quiz';
-import {QuizDataService} from 'app/services/quizDataService';
+import {QuizDataService} from 'app/services/quiz-data.service';
+import {KeyValuePair} from 'app/models/key-value-pair';
+import {KeyValuePairs} from 'app/common/shuffle-type';
+import {NotifyService} from 'app/services/notify.service';
+import {User} from 'app/common/user';
 
 @Component({
   selector: 'app-quiz-edit',
@@ -12,14 +17,16 @@ import {QuizDataService} from 'app/services/quizDataService';
     ]
 })
 export class QuizEditComponent implements OnInit {
-    deleteConfirmed = false;
-
+    shuffleTypes: KeyValuePair[] = KeyValuePairs.ShuffleTypes;
+    user: User;
     constructor(
         public _dialogRef: MatDialogRef<QuizEditComponent>,
         @Inject(MAT_DIALOG_DATA) public quiz: Quiz,
         private _data: QuizDataService,
-
-  ) { }
+        private _notify: NotifyService,
+  ) {
+        this.user = new User();
+    }
 
     ngOnInit(): void
     {
@@ -32,6 +39,7 @@ export class QuizEditComponent implements OnInit {
             this._data.get(this.quiz.quizId).subscribe(response =>
             {
                 this.quiz = response as Quiz;
+                console.log(this.quiz);
             });
         }
     }
@@ -41,4 +49,21 @@ export class QuizEditComponent implements OnInit {
         this._dialogRef.close(true);
     }
 
+    save(): void {
+        let save: any;
+
+        if (this.quiz.quizId) {
+            // update existing quiz
+            save = this._data.update(this.quiz.quizId, this.quiz);
+        } else {
+            // create a new quiz
+            save = this._data.create(this.quiz);
+        }
+
+        save.subscribe(response =>
+        {
+            this._dialogRef.close(false);
+            this._notify.success('Your quiz is saved!', 3000);
+        });
+    }
 }

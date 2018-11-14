@@ -25,12 +25,13 @@
         Delete quiz
     </button>
 
-    <button mat-raised-button
+    <a mat-raised-button
+       [routerLink]="['/quizzes', selectedRow.quizId, 'questions']"
             [disabled]="selectedRow.quizId <=0"
             class="ml-md"
             aria-label="Edit questions">
         Edit questions
-    </button>
+    </a>
 
     <button mat-raised-button
             [disabled]="selectedRow.quizId <=0"
@@ -40,7 +41,7 @@
     </button>
 
     <mat-card-content class="dashboard-card-content">
-        <app-quiz-list-table (eventSelectRow)="eventSelectRow($event)"></app-quiz-list-table>
+        <app-quiz-list-table (eventSelectRow)="eventSelectRow($event)" [quizzes]="quizzes"></app-quiz-list-table>
     </mat-card-content>
 
 </mat-card>
