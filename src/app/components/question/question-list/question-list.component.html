@@ -1,0 +1,47 @@
+<mat-card class="dashboard-card">
+
+    <h2 class="mat-h2">Question list</h2>
+    <p>Select a question to edit / delete it</p>
+
+    <button mat-raised-button
+            (click)="edit(0)"
+            aria-label="New question">
+        New question
+    </button>
+
+    <a mat-raised-button
+       (click)="edit(selectedRow.questionId)"
+       [disabled]="selectedRow.questionId <=0"
+       class="ml-md"
+       aria-label="Edit question">
+        Edit question
+    </a>
+
+    <button mat-raised-button
+            (click)="delete(selectedRow.questionId)"
+            [disabled]="selectedRow.questionId <=0"
+            class="ml-md"
+            aria-label="Delete question">
+        Delete question
+    </button>
+
+    <a mat-raised-button
+       [routerLink]="['/questions', selectedRow.questionId]"
+       [disabled]="selectedRow.questionId <=0"
+       class="ml-md"
+       aria-label="Edit questions">
+        Edit questions
+    </a>
+
+    <button mat-raised-button
+            [disabled]="selectedRow.questionId <=0"
+            class="ml-md"
+            aria-label="Edit exams">
+        Edit exams
+    </button>
+
+    <mat-card-content class="dashboard-card-content">
+        <app-question-list-table (eventSelectRow)="eventSelectRow($event)" [questions]="questions"></app-question-list-table>
+    </mat-card-content>
+
+</mat-card>

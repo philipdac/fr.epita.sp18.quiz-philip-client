@@ -4,13 +4,13 @@
     <p>Select a quiz to manage it</p>
 
     <button mat-raised-button
-            (click)="editQuiz(0)"
+            (click)="edit(0)"
             aria-label="New quiz">
         New quiz
     </button>
 
     <a mat-raised-button
-       (click)="editQuiz(selectedRow.quizId)"
+       (click)="edit(selectedRow.quizId)"
        [disabled]="selectedRow.quizId <=0"
        class="ml-md"
        aria-label="Edit quiz">
@@ -18,7 +18,7 @@
     </a>
 
     <button mat-raised-button
-            (click)="deleteQuiz()"
+            (click)="delete(selectedRow.questionId)"
             [disabled]="selectedRow.quizId <=0"
             class="ml-md"
             aria-label="Delete quiz">

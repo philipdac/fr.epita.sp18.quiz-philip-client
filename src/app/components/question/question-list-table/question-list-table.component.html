@@ -1,0 +1,43 @@
+<div>
+    <mat-table #table
+               [dataSource]="dataSource"
+               matSort
+               aria-label="Elements">
+        <ng-container matColumnDef="select">
+            <mat-header-cell *matHeaderCellDef>Select</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <mat-checkbox disabled=true
+                              [checked]="selectedRow.questionId === row.questionId">
+                </mat-checkbox>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef
+                             mat-sort-header>Question Id
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.questionId}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="title">
+            <mat-header-cell *matHeaderCellDef
+                             mat-sort-header>Title
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.title}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"
+                 (click)="$event.stopPropagation(); selectRow(row);"
+                 [style.background]="selectedRow.questionId === row.questionId ? 'lightgray' : ''"></mat-row>
+
+    </mat-table>
+
+    <mat-paginator #paginator
+                   [length]="dataSource.data.length"
+                   [pageIndex]="0"
+                   [pageSize]="20"
+                   [pageSizeOptions]="[10, 20, 30, 40]">
+    </mat-paginator>
+
+</div>

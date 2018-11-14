@@ -53,7 +53,9 @@ export class QuizListComponent implements OnInit, OnDestroy {
         this.selectedRow = row;
     }
 
-    editQuiz(quizId): void {
+    delete(quizId: number): void {}
+
+    edit(quizId: number): void {
         const quiz = new Quiz();
 
         if (quizId) {

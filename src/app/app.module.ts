@@ -52,6 +52,7 @@ import {QuizEditComponent} from './components/quiz/quiz-edit/quiz-edit.component
 
 import { QuestionListComponent } from './components/question/question-list/question-list.component';
 import { QuestionEditComponent } from './components/question/question-edit/question-edit.component';
+import { QuestionListTableComponent } from './components/question/question-list-table/question-list-table.component';
 
 @NgModule({
     declarations: [
@@ -69,6 +70,7 @@ import { QuestionEditComponent } from './components/question/question-edit/quest
         QuizEditComponent,
         QuestionListComponent,
         QuestionEditComponent,
+        QuestionListTableComponent,
     ],
     imports: [
         BrowserModule,
