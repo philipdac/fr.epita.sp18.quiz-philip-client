@@ -1,10 +1,13 @@
+import {Quiz} from './quiz';
+
 export class Question {
     questionId = 0;
     title = '';
     content = '';
     typeId = '';
-    score = 0;
+    score = 1;
     scoringType = '';
-    maxNumberOfChoice = 0;
     answer = '';
+    quizId = 0;
+    quiz = new Quiz();
 }

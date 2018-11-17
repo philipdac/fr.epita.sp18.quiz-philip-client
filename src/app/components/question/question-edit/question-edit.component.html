@@ -1,3 +1,84 @@
-<p>
-  question-edit works!
-</p>
+<h2 class="mat-h2">{{question.quiz.quizId ? ("Edit question of : '" + question.quiz.title + "'") : "New question"}}</h2>
+
+<a mat-raised-button
+   [routerLink]="['/quizzes', quizId, 'questions']"
+   aria-label="Back to question list">Back to question list</a>
+
+<button mat-raised-button
+        class="ml-md"
+        (click)="newQuestion()"
+        aria-label="New question">New question</button>
+
+<button mat-raised-button
+        class="ml-md"
+        (click)="saveQuestion()"
+        aria-label="New question">Save this question</button>
+
+<button mat-raised-button
+        class="ml-md"
+        (click)="deleteQuestion()"
+        aria-label="New question">Delete this question</button>
+
+<mat-card class="dashboard-card field">
+
+    <div class="flex">
+        <mat-form-field class="field width-25">
+            <mat-select [(ngModel)]="question.typeId"
+                        placeholder="Question type"
+                        required>
+                <mat-option *ngFor="let option of questionTypes"
+                            [value]="option.key">
+                    {{ option.value }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="field width-25">
+            <input matInput
+                   type="number"
+                   [(ngModel)]="question.score"
+                   placeholder="Score of this question"
+                   required/>
+        </mat-form-field>
+
+        <mat-form-field class="field width-25" *ngIf="isMultipleChoices()">
+            <mat-select [(ngModel)]="question.scoringType"
+                        placeholder="Scoring type"
+                        required>
+                <mat-option *ngFor="let option of scoringTypes"
+                            [value]="option.key">
+                    {{ option.value }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+    </div>
+
+    <div class="flex">
+        <mat-form-field class="field width-100">
+            <textarea matInput
+                      rows="3"
+                      [(ngModel)]="question.title"
+                      placeholder="Question title"
+                      required></textarea>
+        </mat-form-field>
+    </div>
+
+    <div class="flex">
+        <mat-form-field class="field width-50">
+            <textarea matInput
+                      rows="15"
+                      [(ngModel)]="question.content"
+                      placeholder="Question content in Markdown format"
+                      required></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="field width-50">
+            <textarea matInput
+                      rows="15"
+                      [ngModel]="viewMarkdown(question.content)"
+                      placeholder="Actual display"
+                      [readonly]="true"></textarea>
+        </mat-form-field>
+    </div>
+</mat-card>

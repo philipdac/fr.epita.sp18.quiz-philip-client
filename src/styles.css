@@ -1,77 +1,136 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
-body { margin: 0; }
+body {
+    margin: 0;
+    background-color: #f5f5f5;
+    padding: 0 24px
+}
+
+.main-nav-bar {
+    border-bottom: thin solid lightgray;
+    padding: 0 !important;
+    margin-bottom: 24px;
+}
 
 .dashboard-card {
-  margin: 16px;
+    display: flex;
+    margin: 16px 0;
 }
+
+.width-25 {
+    width: 25%;
+}
+
+.width-50 {
+    width: 50%;
+}
+
+.width-75 {
+    width: 75%;
+}
+
+.width-100 {
+    width: 100%;
+}
+
+.flex {
+    display: flex;
+}
+
+.field {
+    display: flex;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+}
+
 .fill-space {
-  flex: 1 1 auto;
+    flex: 1 1 auto;
 }
+
 .mb-none {
     margin-bottom: 0 !important;
 }
+
 .mb-md {
     margin-bottom: 16px !important;
 }
+
 .mt-sm {
     margin-top: 8px !important;
 }
+
 .mt-md {
     margin-top: 16px !important;
 }
+
 .mt-lg {
     margin-top: 32px !important;
 }
+
 .ml-none {
     margin-left: 0 !important;
 }
+
 .ml-md {
     margin-left: 16px !important;
 }
+
 .ml-lg {
     margin-left: 32px !important;
 }
+
 .ml-xl {
     margin-left: 64px !important;
 }
+
 .mr-none {
     margin-right: 0 !important;
 }
+
 .mr-md {
     margin-right: 16px !important;
 }
+
 .mr-lg {
     margin-right: 32px !important;
 }
+
 .mr-xl {
     margin-right: 64px !important;
 }
+
 .flex-column {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
+
 .form-md {
-  min-width: 320px;
-  max-width: 568px;
-  width: 100%;
+    min-width: 320px;
+    max-width: 568px;
+    width: 100%;
 }
+
 .full-width {
-  width: 100%;
-  margin-top: 8px !important;
+    width: 100%;
+    margin-top: 8px !important;
 }
+
 .half-width {
-  width: 50%;
+    width: 50%;
 }
+
 .notify-error {
-  background-color: darkred;
+    background-color: darkred;
 }
+
 .notify-error button {
-  color: orange;
+    color: orange;
 }
+
 .notify-success {
-  background-color: darkgreen;
+    background-color: darkgreen;
 }
+
 .notify-success button {
-  color: orange;
+    color: orange;
 }

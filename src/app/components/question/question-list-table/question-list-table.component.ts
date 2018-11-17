@@ -2,8 +2,11 @@ import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {SelectionModel} from '@angular/cdk/collections';
 
-import {Question} from 'app/models/question';
 import {User} from 'app/common/user';
+import {GetValueByKey} from '../../../common/get-value-by-key';
+
+import {QuestionTypes} from 'app/common/question-type';
+import {Question} from 'app/models/question';
 
 @Component({
   selector: 'app-question-list-table',
@@ -16,14 +19,16 @@ export class QuestionListTableComponent implements OnInit, OnChanges {
     @ViewChild(MatSort) sort: MatSort;
     @Output() eventSelectRow = new EventEmitter<Question>();
 
+    questionTypes = QuestionTypes.List;
+    getValueByKey = GetValueByKey;
+
     user: User;
     dataSource: MatTableDataSource<Question>;
-
     emptyRow: Question = new Question();
     selectedRow: Question = this.emptyRow;
     selection = new SelectionModel<Question>(true, []);
 
-    displayedColumns = ['select', 'id', 'title'];
+    displayedColumns = ['select', 'id', 'title', 'type', 'choice', 'score'];
 
     dataObservable: any;
 
@@ -51,5 +56,9 @@ export class QuestionListTableComponent implements OnInit, OnChanges {
         }
 
         this.eventSelectRow.emit(this.selectedRow);
+    }
+
+    getQuestionTypeDesc(key: string): string {
+        return this.getValueByKey.get(this.questionTypes, key);
     }
 }

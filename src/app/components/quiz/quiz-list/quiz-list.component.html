@@ -28,16 +28,16 @@
     <a mat-raised-button
        [routerLink]="['/quizzes', selectedRow.quizId, 'questions']"
             [disabled]="selectedRow.quizId <=0"
-            class="ml-md"
-            aria-label="Edit questions">
-        Edit questions
+            class="ml-lg"
+            aria-label="Question list">
+        Question list
     </a>
 
     <button mat-raised-button
             [disabled]="selectedRow.quizId <=0"
             class="ml-md"
-            aria-label="Edit exams">
-        Edit exams
+            aria-label="Exam list">
+        Exam list
     </button>
 
     <mat-card-content class="dashboard-card-content">

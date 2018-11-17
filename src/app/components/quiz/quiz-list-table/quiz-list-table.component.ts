@@ -26,7 +26,7 @@ export class QuizListTableComponent implements OnInit, OnChanges {
     selectedRow: QuizSnapshot = this.emptyRow;
     selection = new SelectionModel<QuizSnapshot>(true, []);
 
-    displayedColumns = ['select', 'id', 'title', 'questionCount', 'duration', 'examCount', 'teacherName'];
+    displayedColumns = ['select', 'id', 'title', 'question', 'duration', 'exam', 'teacher'];
 
     dataObservable: any;
 

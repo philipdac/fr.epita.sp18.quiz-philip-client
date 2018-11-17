@@ -26,7 +26,7 @@
             <mat-cell *matCellDef="let row">{{row.title}}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="questionCount">
+        <ng-container matColumnDef="question">
             <mat-header-cell *matHeaderCellDef
                              mat-sort-header>Number of questions
             </mat-header-cell>
@@ -41,7 +41,7 @@
             <mat-cell *matCellDef="let row">{{row.duration}} minutes</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="examCount">
+        <ng-container matColumnDef="exam">
             <mat-header-cell *matHeaderCellDef
                              mat-sort-header>Number of exams
             </mat-header-cell>
@@ -49,15 +49,11 @@
                 <a href="#" *ngIf="row.examCount">{{row.examCount}} exam(s)</a></mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="teacherName">
+        <ng-container matColumnDef="teacher">
             <mat-header-cell *matHeaderCellDef
                              mat-sort-header>Teacher
             </mat-header-cell>
             <mat-cell *matCellDef="let row">{{row.teacherName}}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="examDetail">
-            <mat-cell *matCellDef="let row"></mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

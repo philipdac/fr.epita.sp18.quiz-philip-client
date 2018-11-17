@@ -14,7 +14,7 @@
 
         <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef
-                             mat-sort-header>Question Id
+                             mat-sort-header>Id
             </mat-header-cell>
             <mat-cell *matCellDef="let row">{{row.questionId}}</mat-cell>
         </ng-container>
@@ -24,6 +24,27 @@
                              mat-sort-header>Title
             </mat-header-cell>
             <mat-cell *matCellDef="let row">{{row.title}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+            <mat-header-cell *matHeaderCellDef
+                             mat-sort-header>Type
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{getQuestionTypeDesc(row.typeId)}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="score">
+            <mat-header-cell *matHeaderCellDef
+                             mat-sort-header>Score
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.score}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="choice">
+            <mat-header-cell *matHeaderCellDef
+                             mat-sort-header>Number of choices
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.choices.length}}</mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

@@ -40,7 +40,7 @@ export class QuizListComponent implements OnInit, OnDestroy {
         this.dataObservable = this._data
             .list({teacherId: this.user.userId})
             .subscribe(resp => {
-                console.log('data', resp);
+                console.log('quizzes', resp);
                 this.quizzes = resp as QuizSnapshot[];
             });
     }

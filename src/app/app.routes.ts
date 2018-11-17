@@ -20,7 +20,7 @@ export const RouteDef = [
 
     {path: 'quizzes', component: QuizListComponent},
     {path: 'quizzes/:quizId/questions', component: QuestionListComponent},
-    {path: 'questions/:questionId', component: QuestionEditComponent},
+    {path: 'quizzes/:quizId/questions/:questionId', component: QuestionEditComponent},
 
     {path: '', component: ReadmeComponent},
     {path: '**', component: ReadmeComponent}

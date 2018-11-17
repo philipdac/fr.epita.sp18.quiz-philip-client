@@ -1,0 +1,19 @@
+.mat-column-select,
+.mat-column-id,
+.mat-column-score
+{
+    flex: 0 0 60px;
+}
+
+.mat-column-choice
+{
+    flex: 0 0 120px;
+}
+
+.mat-column-type{
+    flex: 0 0 240px;
+}
+
+.mat-column-title{
+    padding-right: 16px;
+}
