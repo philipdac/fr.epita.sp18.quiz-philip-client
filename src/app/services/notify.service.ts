@@ -1,10 +1,11 @@
-import {Injectable} from '@angular/core';
+import {Injectable, NgZone} from '@angular/core';
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 
 @Injectable()
 export class NotifyService {
     constructor(
         private snackBar: MatSnackBar,
+        private zone: NgZone
     ) {
     }
 
@@ -24,8 +25,10 @@ export class NotifyService {
             return;
         }
 
-        const config = this.createConfig(duration, 'error');
-        this.snackBar.open(message, 'Close', config);
+        this.zone.run(() => {
+            const config = this.createConfig(duration, 'error');
+            this.snackBar.open(message, 'Close', config);
+        });
     }
 
     success(message: string, duration: number = 10000) {
@@ -33,7 +36,9 @@ export class NotifyService {
             return;
         }
 
-        const config = this.createConfig(duration, 'success');
-        this.snackBar.open(message, 'Close', config);
+        this.zone.run(() => {
+            const config = this.createConfig(duration, 'success');
+            this.snackBar.open(message, 'Close', config);
+        });
     }
 }
