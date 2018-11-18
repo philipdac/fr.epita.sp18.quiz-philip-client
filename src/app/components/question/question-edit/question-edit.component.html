@@ -1,4 +1,4 @@
-<h1 class="mat-h1">{{question.quiz.quizId ? ("Editing question of Quiz : " + question.quiz.title) : "New question"}}</h1>
+<h1 class="mat-h1">{{questionId ? "Editing" : "New"}} question {{questionId ? questionId : ''}} of Quiz : {{quiz.title}}</h1>
 
 <a mat-raised-button
    [routerLink]="['/quizzes', quizId, 'questions']"

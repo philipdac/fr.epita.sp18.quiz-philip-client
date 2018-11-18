@@ -132,7 +132,7 @@
             true,
             "element",
             [
-                "iam"
+                "quiz"
             ],
             "kebab-case"
         ]

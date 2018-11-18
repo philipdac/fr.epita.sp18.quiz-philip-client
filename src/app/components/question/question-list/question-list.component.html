@@ -18,13 +18,13 @@
                 New question
             </button>
 
-            <a mat-raised-button
-               [routerLink]="['/quizzes', quizId, 'questions', selectedRow.questionId]"
+            <button mat-raised-button
+               (click)="edit(selectedRow.questionId)"
                [disabled]="selectedRow.questionId <=0"
                class="ml-lg"
                aria-label="Edit question">
                 Edit question
-            </a>
+            </button>
 
             <button mat-raised-button
                     (click)="delete(selectedRow.questionId)"

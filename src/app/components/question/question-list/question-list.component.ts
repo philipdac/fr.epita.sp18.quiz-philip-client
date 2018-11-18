@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {MatDialog} from '@angular/material';
 
@@ -33,6 +33,7 @@ export class QuestionListComponent implements OnInit, OnDestroy {
         private _dialog: MatDialog,
         private _notify: NotifyService,
         private _route: ActivatedRoute,
+        private _router: Router,
         private _data: QuestionDataService,
         private _dataQuiz: QuizDataService
     ) {
@@ -80,7 +81,7 @@ export class QuestionListComponent implements OnInit, OnDestroy {
 
     }
 
-    edit(questionId): void {
-
+    edit(questionId: number): void {
+        this._router.navigateByUrl(`/quizzes/${this.quizId}/questions/${questionId}`).then();
     }
 }

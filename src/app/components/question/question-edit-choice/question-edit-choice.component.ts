@@ -27,4 +27,6 @@ export class QuestionEditChoiceComponent implements OnInit {
         return this.pairMethods.valueOfKey(this.choiceNumbers, key);
     }
 
+    deleteChoice(): void {
+    }
 }

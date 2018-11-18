@@ -1,4 +1,6 @@
-export class Quiz {
+import { AuditModel } from 'app/models/audit-model';
+
+export class Quiz  extends AuditModel{
     quizId = null;
     title = '';
     duration = 0;
