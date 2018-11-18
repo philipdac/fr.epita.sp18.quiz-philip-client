@@ -58,7 +58,8 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
         this.dataObservable = this._data
             .get(this.questionId)
             .subscribe(resp => {
-                console.log('question', resp);
+                console.log('got question', resp);
+
                 this.question = resp as Question;
                 this.quiz = this.question.quiz;
             });
@@ -89,7 +90,7 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
                 this.question.scoringType = 'SCORE_MANUALLY';
                 break;
             case  'SINGLE_CHOICE':
-                this.question.scoringType = 'MUST_MATCH_ALL';
+                this.question.scoringType = 'ALL_CHOICES_MUST_CORRECT';
                 break;
         }
 

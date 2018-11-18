@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {MatDialog, MatTableDataSource} from '@angular/material';
+import {Router} from '@angular/router';
 
 import {NotifyService} from 'app/services/notify.service';
 
@@ -8,7 +9,7 @@ import {QuizDataService} from 'app/services/quiz-data.service';
 import {Quiz} from 'app/models/quiz';
 import {QuizSnapshot} from 'app/models/quiz-snapshot';
 import {QuizEditComponent} from '../quiz-edit/quiz-edit.component';
-import {User} from '../../../common/user';
+import {User} from 'app/common/user';
 
 @Component({
     selector: 'app-quiz-list',
@@ -26,6 +27,7 @@ export class QuizListComponent implements OnInit, OnDestroy {
         private _title: Title,
         private _dialog: MatDialog,
         private _notify: NotifyService,
+        private _router: Router,
         private _data: QuizDataService
     ) {
         this.user = new User();
@@ -40,7 +42,7 @@ export class QuizListComponent implements OnInit, OnDestroy {
         this.dataObservable = this._data
             .list({teacherId: this.user.userId})
             .subscribe(resp => {
-                console.log('quizzes', resp);
+                console.log('got quizzes', resp);
                 this.quizzes = resp as QuizSnapshot[];
             });
     }
@@ -53,7 +55,8 @@ export class QuizListComponent implements OnInit, OnDestroy {
         this.selectedRow = row;
     }
 
-    delete(quizId: number): void {}
+    delete(quizId: number): void {
+    }
 
     edit(quizId: number): void {
         const quiz = new Quiz();
@@ -75,5 +78,13 @@ export class QuizListComponent implements OnInit, OnDestroy {
                 this.getData();
             }
         });
+    }
+
+    examList(quizId: number): void {
+        this._router.navigateByUrl(`/quizzes/${quizId}/questions?view=exam`).then();
+    }
+
+    questionList(quizId: number): void {
+        this._router.navigateByUrl(`/quizzes/${quizId}/questions?view=question`).then();
     }
 }

@@ -3,7 +3,7 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {SelectionModel} from '@angular/cdk/collections';
 
 import {User} from 'app/common/user';
-import {GetValueByKey} from '../../../common/get-value-by-key';
+import {KeyValuePairMethods} from 'app/common/key-value-pair-methods';
 
 import {QuestionTypes} from 'app/common/question-type';
 import {Question} from 'app/models/question';
@@ -20,7 +20,7 @@ export class QuestionListTableComponent implements OnInit, OnChanges {
     @Output() eventSelectRow = new EventEmitter<Question>();
 
     questionTypes = QuestionTypes.List;
-    getValueByKey = GetValueByKey;
+    pairMethods = KeyValuePairMethods;
 
     user: User;
     dataSource: MatTableDataSource<Question>;
@@ -59,6 +59,6 @@ export class QuestionListTableComponent implements OnInit, OnChanges {
     }
 
     getQuestionTypeDesc(key: string): string {
-        return this.getValueByKey.get(this.questionTypes, key);
+        return this.pairMethods.valueOfKey(this.questionTypes, key);
     }
 }

@@ -1,5 +1,15 @@
 <mat-card class="dashboard-card field">
 
+    <div class="mat-card-header space-between field">
+        <h2 class="mat-h2">
+            <mat-icon *ngIf="!choice.questionChoiceId"
+                      class="secondary-text mat-primary">fiber_new</mat-icon>
+            Choice {{getChoiceNumberDesc(choice.choiceNumber)}}
+        </h2>
+
+        <button mat-stroked-button (click)="deleteChoice(choice)">Delete this choice</button>
+    </div>
+
     <div class="flex">
         <mat-form-field class="field width-20">
             <mat-select [(ngModel)]="choice.choiceNumber"
@@ -30,7 +40,7 @@
 
     </div>
 
-    <div>
+    <div class="flex">
         <mat-form-field class="field width-100">
             <textarea matInput
                       rows="3"

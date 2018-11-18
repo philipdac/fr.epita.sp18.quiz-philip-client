@@ -13,8 +13,11 @@ body {
 }
 
 .dashboard-card {
-    display: flex;
-    margin: 16px 0;
+    margin: 24px 0;
+}
+.space-between {
+    justify-content: space-between;
+    align-items: start;
 }
 
 .width-10 {
@@ -59,8 +62,8 @@ body {
 
 .field {
     display: flex;
-    padding-left: 8px !important;
-    padding-right: 8px !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
 }
 
 .fill-space {

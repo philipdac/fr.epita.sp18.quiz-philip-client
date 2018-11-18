@@ -1,47 +1,46 @@
+<h1 class="mat-h1">Quiz list</h1>
+
+<button mat-raised-button
+        (click)="edit(0)"
+        aria-label="New quiz">
+    New quiz
+</button>
+
+<button mat-raised-button
+        (click)="edit(selectedRow.quizId)"
+        [disabled]="selectedRow.quizId <=0"
+        class="ml-md"
+        aria-label="Edit quiz">
+    Edit quiz
+</button>
+
+<button mat-raised-button
+        (click)="delete(selectedRow.questionId)"
+        [disabled]="selectedRow.quizId <=0"
+        class="ml-md"
+        aria-label="Delete quiz">
+    Delete quiz
+</button>
+
+<button mat-raised-button
+        (click)="questionList(selectedRow.quizId)"
+        [disabled]="selectedRow.quizId <=0"
+        class="ml-lg"
+        aria-label="Question list">
+    Question list
+</button>
+
+<button mat-raised-button
+        (click)="examList(selectedRow.quizId)"
+        [disabled]="selectedRow.quizId <=0"
+        class="ml-md"
+        aria-label="Exam list">
+    Exam list
+</button>
+
 <mat-card class="dashboard-card">
-
-    <h2 class="mat-h2">Quiz list</h2>
     <p>Select a quiz to manage it</p>
-
-    <button mat-raised-button
-            (click)="edit(0)"
-            aria-label="New quiz">
-        New quiz
-    </button>
-
-    <a mat-raised-button
-       (click)="edit(selectedRow.quizId)"
-       [disabled]="selectedRow.quizId <=0"
-       class="ml-md"
-       aria-label="Edit quiz">
-        Edit quiz
-    </a>
-
-    <button mat-raised-button
-            (click)="delete(selectedRow.questionId)"
-            [disabled]="selectedRow.quizId <=0"
-            class="ml-md"
-            aria-label="Delete quiz">
-        Delete quiz
-    </button>
-
-    <a mat-raised-button
-       [routerLink]="['/quizzes', selectedRow.quizId, 'questions']"
-            [disabled]="selectedRow.quizId <=0"
-            class="ml-lg"
-            aria-label="Question list">
-        Question list
-    </a>
-
-    <button mat-raised-button
-            [disabled]="selectedRow.quizId <=0"
-            class="ml-md"
-            aria-label="Exam list">
-        Exam list
-    </button>
-
-    <mat-card-content class="dashboard-card-content">
+    <mat-card-content>
         <app-quiz-list-table (eventSelectRow)="eventSelectRow($event)" [quizzes]="quizzes"></app-quiz-list-table>
     </mat-card-content>
-
 </mat-card>

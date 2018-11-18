@@ -36,7 +36,7 @@ export class QuizEditComponent implements OnInit {
         if (this.quiz.quizId) {
             this._data.get(this.quiz.quizId).subscribe(response => {
                 this.quiz = response as Quiz;
-                console.log('quiz', this.quiz);
+                console.log('got quiz', this.quiz);
             });
         }
     }
@@ -47,6 +47,8 @@ export class QuizEditComponent implements OnInit {
 
     save(): void {
         let save: any;
+
+        console.log('saving quiz', this.quiz);
 
         if (this.quiz.quizId) {
             // update existing quiz

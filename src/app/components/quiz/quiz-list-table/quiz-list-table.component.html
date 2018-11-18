@@ -31,7 +31,7 @@
                              mat-sort-header>Number of questions
             </mat-header-cell>
             <mat-cell *matCellDef="let row">
-                <a href="#" *ngIf="row.questionCount">{{row.questionCount}} question(s)</a></mat-cell>
+                <a href="javascript:void(0)" (click)="questionList(row.quizId)" *ngIf="row.questionCount">{{row.questionCount}} question(s)</a></mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="duration">
@@ -46,7 +46,7 @@
                              mat-sort-header>Number of exams
             </mat-header-cell>
             <mat-cell *matCellDef="let row">
-                <a href="#" *ngIf="row.examCount">{{row.examCount}} exam(s)</a></mat-cell>
+                <a href="javascript:void(0)" (click)="examList(row.quizId)" *ngIf="row.examCount">{{row.examCount}} exam(s)</a></mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="teacher">

@@ -1,38 +1,75 @@
+<h1 class="mat-h1">Quiz : {{quiz.title}}</h1>
+<a mat-raised-button
+   routerLink="/quizzes"
+   aria-label="Back to quiz list">Back to quiz list
+</a>
+
 <mat-card class="dashboard-card">
+    <mat-tab-group dynamicHeight [selectedIndex]="viewTab">
 
-    <h2 class="mat-h2">Question list of : '{{quiz.title}}'</h2>
-    <p>Select a question to edit / delete it</p>
+        <mat-tab label="Question list">
 
-    <a mat-raised-button
-       routerLink="/quizzes"
-       aria-label="Back to quiz list">Back to quiz list
-    </a>
+            <p *ngIf="!questions.length">Click at 'New question' to add a question</p>
+            <p *ngIf="questions.length">Select a question to edit / delete it</p>
 
-    <button mat-raised-button
-            (click)="edit(0)"
-            class="ml-lg"
-            aria-label="New question">
-        New question
-    </button>
+            <button mat-raised-button
+                    (click)="edit(0)"
+                    aria-label="New question">
+                New question
+            </button>
 
-    <a mat-raised-button
-       [routerLink]="['/quizzes', quizId, 'questions', selectedRow.questionId]"
-       [disabled]="selectedRow.questionId <=0"
-       class="ml-lg"
-       aria-label="Edit question">
-        Edit question
-    </a>
+            <a mat-raised-button
+               [routerLink]="['/quizzes', quizId, 'questions', selectedRow.questionId]"
+               [disabled]="selectedRow.questionId <=0"
+               class="ml-lg"
+               aria-label="Edit question">
+                Edit question
+            </a>
 
-    <button mat-raised-button
-            (click)="delete(selectedRow.questionId)"
-            [disabled]="selectedRow.questionId <=0"
-            class="ml-md"
-            aria-label="Delete question">
-        Delete question
-    </button>
+            <button mat-raised-button
+                    (click)="delete(selectedRow.questionId)"
+                    [disabled]="selectedRow.questionId <=0"
+                    class="ml-md"
+                    aria-label="Delete question">
+                Delete question
+            </button>
 
-    <mat-card-content class="dashboard-card-content">
-        <app-question-list-table (eventSelectRow)="eventSelectRow($event)" [questions]="questions"></app-question-list-table>
-    </mat-card-content>
+            <mat-card-content class="dashboard-card-content">
+                <app-question-list-table (eventSelectRow)="eventSelectRow($event)"
+                                         [questions]="questions"></app-question-list-table>
+            </mat-card-content>
 
+        </mat-tab>
+
+        <mat-tab label="Exam list">
+            <p>Select an exam to manage it</p>
+
+            <button mat-raised-button
+                    (click)="edit(0)"
+                    aria-label="New exam">
+                New exam
+            </button>
+
+               <!--[routerLink]="['/quizzes', quizId, 'exams', selectedRow.examId]"-->
+               <!--[disabled]="selectedRow.examId <=0"-->
+            <a mat-raised-button
+               class="ml-lg"
+               aria-label="Edit exam">
+                Edit exam
+            </a>
+
+                    <!--(click)="delete(selectedRow.examId)"-->
+                    <!--[disabled]="selectedRow.examId <=0"-->
+            <button mat-raised-button
+                    class="ml-md"
+                    aria-label="Delete exam">
+                Delete exam
+            </button>
+
+            <mat-card-content class="dashboard-card-content">
+            </mat-card-content>
+
+        </mat-tab>
+
+    </mat-tab-group>
 </mat-card>

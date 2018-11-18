@@ -1,11 +1,12 @@
 import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {SelectionModel} from '@angular/cdk/collections';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {Router} from '@angular/router';
 
 import {Constant} from 'app/common/constant';
 import {QuizDataService} from 'app/services/quiz-data.service';
 import {QuizSnapshot} from 'app/models/quiz-snapshot';
-import {User} from '../../../common/user';
+import {User} from 'app/common/user';
 
 @Component({
     selector: 'app-quiz-list-table',
@@ -30,7 +31,9 @@ export class QuizListTableComponent implements OnInit, OnChanges {
 
     dataObservable: any;
 
-    constructor() {
+    constructor(
+        private _router: Router,
+    ) {
         this.user = new User();
         this.dataSource = new MatTableDataSource();
     }
@@ -54,5 +57,13 @@ export class QuizListTableComponent implements OnInit, OnChanges {
         }
 
         this.eventSelectRow.emit(this.selectedRow);
+    }
+
+    examList(quizId: number): void {
+        this._router.navigateByUrl(`/quizzes/${quizId}/questions?view=exam`).then();
+    }
+
+    questionList(quizId: number): void {
+        this._router.navigateByUrl(`/quizzes/${quizId}/questions?view=question`).then();
     }
 }

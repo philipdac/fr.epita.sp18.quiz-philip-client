@@ -1,16 +1,14 @@
-import { Injectable, NgZone } from '@angular/core';
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
+import {Injectable} from '@angular/core';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 
 @Injectable()
-export class NotifyService
-{
+export class NotifyService {
     constructor(
         private snackBar: MatSnackBar,
-        private zone: NgZone
-    ) { }
+    ) {
+    }
 
-    private static createConfig(duration, msgType)
-    {
+    private createConfig(duration, msgType) {
         const config = new MatSnackBarConfig();
 
         config.duration = duration;
@@ -21,21 +19,21 @@ export class NotifyService
         return config;
     }
 
-    error(message: string, duration: number = 10000)
-    {
-        this.zone.run(() =>
-        {
-            const config = NotifyService.createConfig(duration, 'error');
-            this.snackBar.open(message, 'Close', config);
-        });
+    error(message: string, duration: number = 10000) {
+        if (!message) {
+            return;
+        }
+
+        const config = this.createConfig(duration, 'error');
+        this.snackBar.open(message, 'Close', config);
     }
 
-    success(message: string, duration: number = 10000)
-    {
-        this.zone.run(() =>
-        {
-            const config = NotifyService.createConfig(duration, 'success');
-            this.snackBar.open(message, 'Close', config);
-        });
+    success(message: string, duration: number = 10000) {
+        if (!message) {
+            return;
+        }
+
+        const config = this.createConfig(duration, 'success');
+        this.snackBar.open(message, 'Close', config);
     }
 }

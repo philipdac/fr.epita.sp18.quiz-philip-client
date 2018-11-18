@@ -23,6 +23,8 @@ export class QuestionListComponent implements OnInit, OnDestroy {
     user: User;
     selectedRow: Question = new Question();
 
+    viewTab = 0;
+
     quizObservable: any;
     questObservable: any;
 
@@ -37,6 +39,7 @@ export class QuestionListComponent implements OnInit, OnDestroy {
         this.user = new User();
         this.quizId = 0;
         this.quiz = new Quiz();
+        this.questions = [];
     }
 
     ngOnInit() {
@@ -45,19 +48,21 @@ export class QuestionListComponent implements OnInit, OnDestroy {
     }
 
     getData(): void {
-        this.quizId = +this._route.snapshot.paramMap.get('quizId');
+        const view = this._route.snapshot.queryParamMap.get('view');
+        this.viewTab = view === 'exam' ? 1 : 0;
 
+        this.quizId = +this._route.snapshot.paramMap.get('quizId');
         this.quizObservable = this._dataQuiz
             .get(this.quizId)
             .subscribe(resp => {
-                console.log('quiz', resp);
+                console.log('got quiz', resp);
                 this.quiz = resp as Quiz;
             });
 
         this.questObservable = this._data
             .list({quizId: this.quizId})
             .subscribe(resp => {
-                console.log('questions', resp);
+                console.log('got questions', resp);
                 this.questions = resp as Question[];
             });
     }

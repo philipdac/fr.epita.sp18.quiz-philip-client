@@ -1,18 +1,23 @@
-import { ErrorHandler, Injectable, Injector } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
+import {ErrorHandler, Injectable, Injector} from '@angular/core';
+import {HttpErrorResponse} from '@angular/common/http';
 
-import { NotifyService } from '../services/notify.service';
+import {NotifyService} from '../services/notify.service';
 
 @Injectable()
-export class AppErrorHandler implements ErrorHandler
-{
+export class AppErrorHandler implements ErrorHandler {
+    lastMsg = '';
+
     constructor(
         private injector: Injector,
-    ) { }
+    ) {
+    }
 
-    handleError(err: Error | HttpErrorResponse)
-    {
-        console.log('AppErrorHandler captured:', err);
+    handleError(err: Error | HttpErrorResponse) {
+        if (this.lastMsg === err.message) {
+            // Same message. Do not notify again
+            throw err;
+        }
+        this.lastMsg = err.message;
 
         let msg = 'Application has error.';
 
@@ -35,5 +40,8 @@ export class AppErrorHandler implements ErrorHandler
         const tag = ' Please try again or call for support. (Dev: see console for more detail)';
         const notify = this.injector.get(NotifyService);
         notify.error(msg + tag);
+
+        console.log('AppErrorHandler captured:', err);
+        throw err;
     }
 }

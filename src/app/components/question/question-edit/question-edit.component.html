@@ -1,4 +1,4 @@
-<h2 class="mat-h2">{{question.quiz.quizId ? ("Edit question of : '" + question.quiz.title + "'") : "New question"}}</h2>
+<h1 class="mat-h1">{{question.quiz.quizId ? ("Editing question of Quiz : " + question.quiz.title) : "New question"}}</h1>
 
 <a mat-raised-button
    [routerLink]="['/quizzes', quizId, 'questions']"
@@ -46,14 +46,6 @@
             </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="field width-20">
-            <input matInput
-                   type="number"
-                   [(ngModel)]="question.score"
-                   placeholder="Score of this question"
-                   required/>
-        </mat-form-field>
-
         <mat-form-field class="field width-20" *ngIf="isMultipleChoices()">
             <mat-select [(ngModel)]="question.scoringType"
                         placeholder="Scoring type"
@@ -63,6 +55,14 @@
                     {{ option.value }}
                 </mat-option>
             </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="field width-20">
+            <input matInput
+                   type="number"
+                   [(ngModel)]="question.score"
+                   placeholder="Score of this question"
+                   required/>
         </mat-form-field>
 
     </div>
