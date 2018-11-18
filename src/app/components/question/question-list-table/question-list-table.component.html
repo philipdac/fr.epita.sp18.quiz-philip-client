@@ -50,7 +50,8 @@
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"
                  (click)="$event.stopPropagation(); selectRow(row);"
-                 [style.background]="selectedRow.questionId === row.questionId ? 'lightgray' : ''"></mat-row>
+                 [style.background]="selectedRow.questionId === row.questionId ? 'lightgray' : ''"
+                 class="mouse-pointer"></mat-row>
 
     </mat-table>
 

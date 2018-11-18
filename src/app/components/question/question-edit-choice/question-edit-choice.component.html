@@ -7,7 +7,7 @@
             Choice {{getChoiceNumberDesc(choice.choiceNumber)}}
         </h2>
 
-        <button mat-stroked-button (click)="deleteChoice(choice)">Delete this choice</button>
+        <button mat-stroked-button (click)="deleteMe()">Delete this choice</button>
     </div>
 
     <div class="flex">
@@ -30,10 +30,11 @@
             </mat-radio-group>
         </div>
 
-        <mat-form-field class="field width-20">
+        <mat-form-field class="field width-20" *ngIf="editableScore">
             <input matInput
                    type="number"
                    [(ngModel)]="choice.score"
+                   (change)="onScoreChanged()"
                    placeholder="Score of this choice"
                    required/>
         </mat-form-field>

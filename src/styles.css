@@ -15,6 +15,7 @@ body {
 .dashboard-card {
     margin: 24px 0;
 }
+
 .space-between {
     justify-content: space-between;
     align-items: start;
@@ -156,4 +157,8 @@ body {
 
 .notify-success button {
     color: orange;
+}
+
+.mouse-pointer {
+    cursor: pointer;
 }

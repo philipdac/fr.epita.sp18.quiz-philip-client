@@ -14,6 +14,7 @@
 <button mat-raised-button
         class="ml-md"
         (click)="saveQuestion()"
+        [disabled]="!isValidQuestion()"
         aria-label="Save question">
     Save this question
 </button>
@@ -33,6 +34,7 @@
 </button>
 
 <mat-card class="dashboard-card field">
+    <p class="mat-error field">{{inputErrMsg}}</p>
 
     <div class="flex">
         <mat-form-field class="field width-20">
@@ -48,6 +50,7 @@
 
         <mat-form-field class="field width-20" *ngIf="isMultipleChoices()">
             <mat-select [(ngModel)]="question.scoringType"
+                        (selectionChange)="scoringTypeChanged()"
                         placeholder="Scoring type"
                         required>
                 <mat-option *ngFor="let option of scoringTypes"
@@ -60,9 +63,9 @@
         <mat-form-field class="field width-20">
             <input matInput
                    type="number"
+                   [readonly]="question.scoringType === 'SUM_CORRECT_CHOICES_SCORES'"
                    [(ngModel)]="question.score"
-                   placeholder="Score of this question"
-                   required/>
+                   placeholder="Score of this question"/>
         </mat-form-field>
 
     </div>
@@ -72,8 +75,7 @@
             <textarea matInput
                       rows="3"
                       [(ngModel)]="question.title"
-                      placeholder="Question title"
-                      required></textarea>
+                      placeholder="Question title"></textarea>
         </mat-form-field>
     </div>
 
@@ -82,24 +84,23 @@
             <textarea matInput
                       rows="10"
                       [(ngModel)]="question.content"
-                      placeholder="Question content in Markdown format"
-                      required></textarea>
+                      placeholder="Question content in Markdown format"></textarea>
         </mat-form-field>
 
         <mat-form-field class="field width-50">
             <textarea matInput
                       rows="10"
                       [ngModel]="viewMarkdown(question.content)"
-                      placeholder="Actual display"
+                      placeholder="Student's view"
                       [readonly]="true"></textarea>
         </mat-form-field>
     </div>
 </mat-card>
 
-<div *ngFor="let choice of question.choices"
-     fxFlex=100
-     fxLayout="column">
+<div *ngFor="let choice of question.choices">
     <app-question-edit-choice *ngIf="question.choices.length > 0"
-                              [choice]="choice"
+                              [choice]="choice" [editableScore]="question.scoringType === 'SUM_CORRECT_CHOICES_SCORES'"
+                              (deleteChoice)="deleteChoice($event)"
+                              (updateScore)="sumChoiceScore()"
                           ></app-question-edit-choice>
 </div>

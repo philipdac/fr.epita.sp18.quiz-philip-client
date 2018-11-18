@@ -31,7 +31,8 @@
                              mat-sort-header>Number of questions
             </mat-header-cell>
             <mat-cell *matCellDef="let row">
-                <a href="javascript:void(0)" (click)="questionList(row.quizId)" *ngIf="row.questionCount">{{row.questionCount}} question(s)</a></mat-cell>
+                <a href="javascript:void(0)" (click)="questionList(row.quizId)" *ngIf="row.questionCount">{{row.questionCount}}
+                    question(s)</a></mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="duration">
@@ -46,7 +47,8 @@
                              mat-sort-header>Number of exams
             </mat-header-cell>
             <mat-cell *matCellDef="let row">
-                <a href="javascript:void(0)" (click)="examList(row.quizId)" *ngIf="row.examCount">{{row.examCount}} exam(s)</a></mat-cell>
+                <a href="javascript:void(0)" (click)="examList(row.quizId)" *ngIf="row.examCount">{{row.examCount}}
+                    exam(s)</a></mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="teacher">
@@ -59,7 +61,8 @@
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"
                  (click)="$event.stopPropagation(); selectRow(row);"
-                 [style.background]="selectedRow.quizId === row.quizId ? 'lightgray' : ''"></mat-row>
+                 [style.background]="selectedRow.quizId === row.quizId ? 'lightgray' : ''"
+                 class="mouse-pointer"></mat-row>
 
     </mat-table>
 
