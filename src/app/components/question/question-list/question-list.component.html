@@ -3,8 +3,14 @@
     <h2 class="mat-h2">Question list of : '{{quiz.title}}'</h2>
     <p>Select a question to edit / delete it</p>
 
+    <a mat-raised-button
+       routerLink="/quizzes"
+       aria-label="Back to quiz list">Back to quiz list
+    </a>
+
     <button mat-raised-button
             (click)="edit(0)"
+            class="ml-lg"
             aria-label="New question">
         New question
     </button>
@@ -12,7 +18,7 @@
     <a mat-raised-button
        [routerLink]="['/quizzes', quizId, 'questions', selectedRow.questionId]"
        [disabled]="selectedRow.questionId <=0"
-       class="ml-md"
+       class="ml-lg"
        aria-label="Edit question">
         Edit question
     </a>
@@ -23,13 +29,6 @@
             class="ml-md"
             aria-label="Delete question">
         Delete question
-    </button>
-
-    <button mat-raised-button
-            [disabled]="selectedRow.questionId <=0"
-            class="ml-md"
-            aria-label="Edit exams">
-        Edit exams
     </button>
 
     <mat-card-content class="dashboard-card-content">

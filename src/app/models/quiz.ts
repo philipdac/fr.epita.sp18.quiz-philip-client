@@ -1,8 +1,9 @@
 export class Quiz {
-    quizId = 0;
+    quizId = null;
     title = '';
     duration = 0;
+    teacherId = 0;
+
     questionCount = 0;
     examCount = 0;
-    teacherId = 0;
 }

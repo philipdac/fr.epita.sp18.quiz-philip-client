@@ -1,0 +1,42 @@
+<mat-card class="dashboard-card field">
+
+    <div class="flex">
+        <mat-form-field class="field width-20">
+            <mat-select [(ngModel)]="choice.choiceNumber"
+                        placeholder="Choice number"
+                        required>
+                <mat-option *ngFor="let option of choiceNumbers"
+                            [value]="option.key">
+                    {{ option.value }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div class="field width-20" style="align-items: center;">
+            <label>Is this a correct choice ?</label>
+            <mat-radio-group [(ngModel)]="choice.correctChoice" required>
+                <mat-radio-button [value]="true" class="ml-md">Yes</mat-radio-button>
+                <mat-radio-button [value]="false" class="ml-md">No</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <mat-form-field class="field width-20">
+            <input matInput
+                   type="number"
+                   [(ngModel)]="choice.score"
+                   placeholder="Score of this choice"
+                   required/>
+        </mat-form-field>
+
+    </div>
+
+    <div>
+        <mat-form-field class="field width-100">
+            <textarea matInput
+                      rows="3"
+                      [(ngModel)]="choice.description"
+                      placeholder="Description of this choice"
+                      required></textarea>
+        </mat-form-field>
+    </div>
+</mat-card>

@@ -1,4 +1,5 @@
 import {Quiz} from './quiz';
+import {QuestionChoice} from 'app/models/question-choice';
 
 export class Question {
     questionId = 0;
@@ -10,4 +11,5 @@ export class Question {
     answer = '';
     quizId = 0;
     quiz = new Quiz();
+    choices: QuestionChoice[] = [];
 }

@@ -5,10 +5,10 @@ import {MatDialog} from '@angular/material';
 
 import {User} from 'app/common/user';
 import {NotifyService} from 'app/services/notify.service';
-import {QuestionDataService} from 'app/services/question-data.service';
 import {Question} from 'app/models/question';
-import {Quiz} from '../../../models/quiz';
-import {QuizDataService} from '../../../services/quiz-data.service';
+import {Quiz} from 'app/models/quiz';
+import {QuizDataService} from 'app/services/quiz-data.service';
+import {QuestionDataService} from 'app/services/question-data.service';
 
 @Component({
     selector: 'app-question-list',

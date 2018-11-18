@@ -11,6 +11,7 @@ import {KeyValuePair} from 'app/models/key-value-pair';
 import {QuestionTypes} from 'app/common/question-type';
 import {Quiz} from 'app/models/quiz';
 import {ScoringTypes} from 'app/common/scoring-type';
+import {QuestionChoice} from 'app/models/question-choice';
 
 @Component({
     selector: 'app-question-edit',
@@ -68,7 +69,7 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
     }
 
     viewMarkdown(content): string {
-        return '';
+        return content;
     }
 
     newQuestion(): void {
@@ -110,4 +111,9 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
     }
 
     deleteQuestion(): void {}
+
+    addChoice(): void {
+        const choice = new QuestionChoice();
+        this.question.choices.push(choice);
+    }
 }

@@ -8,24 +8,25 @@ import {LayoutModule} from '@angular/cdk/layout';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-    MatToolbarModule,
     MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatGridListModule,
     MatCardModule,
-    MatMenuModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
     MatCheckboxModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSnackBarModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatPaginatorModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
     MatTabsModule,
-    MatSelectModule
+    MatToolbarModule,
 } from '@angular/material';
 
 import * as AppRoutes from './app.routes';
@@ -53,6 +54,7 @@ import {QuizEditComponent} from './components/quiz/quiz-edit/quiz-edit.component
 import { QuestionListComponent } from './components/question/question-list/question-list.component';
 import { QuestionEditComponent } from './components/question/question-edit/question-edit.component';
 import { QuestionListTableComponent } from './components/question/question-list-table/question-list-table.component';
+import { QuestionEditChoiceComponent } from './components/question/question-edit-choice/question-edit-choice.component';
 
 @NgModule({
     declarations: [
@@ -71,6 +73,7 @@ import { QuestionListTableComponent } from './components/question/question-list-
         QuestionListComponent,
         QuestionEditComponent,
         QuestionListTableComponent,
+        QuestionEditChoiceComponent,
     ],
     imports: [
         BrowserModule,
@@ -91,6 +94,7 @@ import { QuestionListTableComponent } from './components/question/question-list-
         MatListModule,
         MatMenuModule,
         MatPaginatorModule,
+        MatRadioModule,
         MatSelectModule,
         MatSidenavModule,
         MatSnackBarModule,

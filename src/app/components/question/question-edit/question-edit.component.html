@@ -5,24 +5,37 @@
    aria-label="Back to question list">Back to question list</a>
 
 <button mat-raised-button
-        class="ml-md"
-        (click)="newQuestion()"
-        aria-label="New question">New question</button>
+        class="ml-lg"
+        (click)="addChoice()"
+        aria-label="Add choice">
+    Add choice
+</button>
 
 <button mat-raised-button
         class="ml-md"
         (click)="saveQuestion()"
-        aria-label="New question">Save this question</button>
+        aria-label="Save question">
+    Save this question
+</button>
 
 <button mat-raised-button
         class="ml-md"
         (click)="deleteQuestion()"
-        aria-label="New question">Delete this question</button>
+        aria-label="Delete question">
+    Delete this question
+</button>
+
+<button mat-raised-button
+        class="ml-lg"
+        (click)="newQuestion()"
+        aria-label="New question">
+    New question
+</button>
 
 <mat-card class="dashboard-card field">
 
     <div class="flex">
-        <mat-form-field class="field width-25">
+        <mat-form-field class="field width-20">
             <mat-select [(ngModel)]="question.typeId"
                         placeholder="Question type"
                         required>
@@ -33,7 +46,7 @@
             </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="field width-25">
+        <mat-form-field class="field width-20">
             <input matInput
                    type="number"
                    [(ngModel)]="question.score"
@@ -41,7 +54,7 @@
                    required/>
         </mat-form-field>
 
-        <mat-form-field class="field width-25" *ngIf="isMultipleChoices()">
+        <mat-form-field class="field width-20" *ngIf="isMultipleChoices()">
             <mat-select [(ngModel)]="question.scoringType"
                         placeholder="Scoring type"
                         required>
@@ -67,7 +80,7 @@
     <div class="flex">
         <mat-form-field class="field width-50">
             <textarea matInput
-                      rows="15"
+                      rows="10"
                       [(ngModel)]="question.content"
                       placeholder="Question content in Markdown format"
                       required></textarea>
@@ -75,10 +88,18 @@
 
         <mat-form-field class="field width-50">
             <textarea matInput
-                      rows="15"
+                      rows="10"
                       [ngModel]="viewMarkdown(question.content)"
                       placeholder="Actual display"
                       [readonly]="true"></textarea>
         </mat-form-field>
     </div>
 </mat-card>
+
+<div *ngFor="let choice of question.choices"
+     fxFlex=100
+     fxLayout="column">
+    <app-question-edit-choice *ngIf="question.choices.length > 0"
+                              [choice]="choice"
+                          ></app-question-edit-choice>
+</div>
