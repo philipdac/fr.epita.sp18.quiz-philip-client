@@ -1,14 +1,14 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {Title} from '@angular/platform-browser';
-import {MatDialog} from '@angular/material';
+import { Title } from '@angular/platform-browser';
+import { MatDialog } from '@angular/material';
 
-import {User} from 'app/common/user';
-import {NotifyService} from 'app/services/notify.service';
-import {Question} from 'app/models/question';
-import {Quiz} from 'app/models/quiz';
-import {QuizDataService} from 'app/services/quiz-data.service';
-import {QuestionDataService} from 'app/services/question-data.service';
+import { User } from 'app/common/user';
+import { NotifyService } from 'app/services/notify.service';
+import { Question } from 'app/models/question';
+import { Quiz } from 'app/models/quiz';
+import { QuizDataService } from 'app/services/quiz-data.service';
+import { QuestionDataService } from 'app/services/question-data.service';
 
 @Component({
     selector: 'app-question-list',
@@ -78,7 +78,9 @@ export class QuestionListComponent implements OnInit, OnDestroy {
     }
 
     delete(questionId): void {
-
+        this._data.delete(questionId).then(resp => {
+            this.getData();
+        });
     }
 
     edit(questionId: number): void {

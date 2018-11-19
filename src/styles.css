@@ -159,6 +159,14 @@ body {
     color: orange;
 }
 
+.notify-warning {
+    background-color: orange !important;
+}
+
+.notify-warning button {
+    color: black !important;
+}
+
 .mouse-pointer {
     cursor: pointer;
 }

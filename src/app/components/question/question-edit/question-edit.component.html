@@ -1,4 +1,5 @@
-<h1 class="mat-h1">{{questionId ? "Editing" : "New"}} question {{questionId ? questionId : ''}} of Quiz : {{quiz.title}}</h1>
+<h1 class="mat-h1">{{questionId ? "Editing" : "New"}} question {{questionId ? questionId : ''}} of Quiz :
+    {{quiz.title}}</h1>
 
 <a mat-raised-button
    [routerLink]="['/quizzes', quizId, 'questions']"
@@ -29,6 +30,7 @@
 <button mat-raised-button
         class="ml-lg"
         (click)="newQuestion()"
+        [disabled]="!questionId"
         aria-label="New question">
     New question
 </button>
@@ -39,6 +41,7 @@
     <div class="flex">
         <mat-form-field class="field width-20">
             <mat-select [(ngModel)]="question.typeId"
+                        (selectionChange)="questionTypeChanged()"
                         placeholder="Question type"
                         required>
                 <mat-option *ngFor="let option of questionTypes"
@@ -73,9 +76,10 @@
     <div class="flex">
         <mat-form-field class="field width-100">
             <textarea matInput
-                      rows="3"
+                      rows="2"
                       [(ngModel)]="question.title"
-                      placeholder="Question title"></textarea>
+                      placeholder="Question title"
+                      required></textarea>
         </mat-form-field>
     </div>
 
@@ -99,8 +103,9 @@
 
 <div *ngFor="let choice of question.choices">
     <app-question-edit-choice *ngIf="question.choices.length > 0"
-                              [choice]="choice" [editableScore]="question.scoringType === 'SUM_CORRECT_CHOICES_SCORES'"
+                              [choice]="choice"
+                              [editableScore]="question.scoringType === 'SUM_CORRECT_CHOICES_SCORES'"
                               (deleteChoice)="deleteChoice($event)"
                               (updateScore)="sumChoiceScore()"
-                          ></app-question-edit-choice>
+    ></app-question-edit-choice>
 </div>

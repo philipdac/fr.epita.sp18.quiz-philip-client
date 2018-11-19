@@ -13,7 +13,7 @@ export class NotifyService {
         const config = new MatSnackBarConfig();
 
         config.duration = duration;
-        config.panelClass = [msgType === 'error' ? 'notify-error' : 'notify-success'];
+        config.panelClass = [msgType === 'error' ? 'notify-error' : (msgType === 'success' ? 'notify-success' : 'notify-warning')];
         config.verticalPosition = 'bottom';
         config.horizontalPosition = 'center';
 
@@ -39,6 +39,19 @@ export class NotifyService {
         this.zone.run(() => {
             const config = this.createConfig(duration, 'success');
             this.snackBar.open(message, 'Close', config);
+        });
+    }
+
+    warning(message: string, duration: number = 10000): void
+    {
+        if (!message) {
+            return;
+        }
+
+        this.zone.run(() =>
+        {
+            const config = this.createConfig(duration, 'warning');
+            this.snackBar.open(message, 'OK', config);
         });
     }
 }

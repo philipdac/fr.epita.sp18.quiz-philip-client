@@ -15,7 +15,7 @@ export class QuestionEditChoiceComponent implements OnInit {
     @Input() choice: QuestionChoice;
     @Input() editableScore: boolean;
     @Output() deleteChoice = new EventEmitter<QuestionChoice>();
-    @Output() updateScore = new EventEmitter<>();
+    @Output() updateScore = new EventEmitter<void>();
 
     choiceNumbers: KeyValuePair[];
     pairMethods = KeyValuePairMethods;

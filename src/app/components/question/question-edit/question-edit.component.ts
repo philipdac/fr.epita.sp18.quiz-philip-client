@@ -47,7 +47,7 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
                 private _notify: NotifyService,
                 private _route: ActivatedRoute,
                 private _router: Router,
-                private _data: QuestionDataService,
+                private _dataQuest: QuestionDataService,
                 private _dataQuiz: QuizDataService
     ) {
         this.user = new User();
@@ -71,25 +71,27 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
             .subscribe(resp => {
                 this.quiz = resp as Quiz;
                 console.log('got quiz', this.quiz);
-            });
 
-        this.routeObservable = this._route.params.subscribe((params: Params) => {
-            this.questionId = +params['questionId'];
+                this.routeObservable = this._route.params
+                    .subscribe((params: Params) => {
+                        this.questionId = +params['questionId'];
 
-            if (this.questionId <= 0) {
-                this.question = new Question();
-                this.question.quiz = this.quiz;
-                console.log('new question', this.quiz);
-                return;
+                        if (this.questionId <= 0) {
+                            this.question = new Question();
+                            this.question.quiz = this.quiz;
+                            console.log('new question', this.quiz);
+                            return;
+                        }
+
+                        this.dataObservable = this._dataQuest
+                            .get(this.questionId)
+                            .subscribe(respQuest => {
+                                this.question = respQuest as Question;
+                                console.log('got question', this.question);
+                            });
+                    });
             }
-
-            this.dataObservable = this._data
-                .get(this.questionId)
-                .subscribe(resp => {
-                    this.question = resp as Question;
-                    console.log('got question', this.question);
-                });
-        });
+        );
     }
 
     ngOnDestroy() {
@@ -155,7 +157,7 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
         }
 
         if (!this.question.title && !this.question.content) {
-            this.inputErrMsg = 'The question title and content should not be both empty!';
+            this.inputErrMsg = 'The question title should not be empty!';
             return false;
         }
 
@@ -181,7 +183,7 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
                 this.inputErrMsg = 'Please specify some correct choices!';
                 return false;
             case 'all-choice-correct':
-                this.inputErrMsg = 'All choices are correct. What\'s a quiz!?';
+                this.inputErrMsg = 'All choices are correct. Is this a bonus or a mistake?';
                 return false;
         }
 
@@ -192,6 +194,12 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
 
         this.inputErrMsg = '';
         return true;
+    }
+
+    questionTypeChanged() {
+        if (this.question.typeId === 'MULTIPLE_CHOICE' && !this.question.scoringType) {
+            this.question.scoringType = 'ALL_CHOICES_MUST_CORRECT';
+        }
     }
 
     scoringTypeChanged() {
@@ -234,18 +242,27 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
 
         if (this.question.questionId) {
             // update existing question
-            save = this._data.update(this.question.questionId, this.question);
+            save = this._dataQuest.update(this.question.questionId, this.question);
         } else {
             // create a new question
-            save = this._data.create(this.question);
+            save = this._dataQuest.create(this.question);
         }
 
         save.subscribe(response => {
+            console.log('saved resp', response);
             this._notify.success('Your question is saved!', 3000);
+            this._router.navigate(['/quizzes', this.quizId, 'questions', response]).then();
         });
     }
 
     deleteQuestion(): void {
+        if (!this.question.questionId) {
+            this._notify.warning('You can not delete a new question. Please go back to the list if you do not need this question!')
+            return;
+        }
+        this._dataQuest.delete(this.question.questionId).then(resp => {
+            this._router.navigate(['/quizzes', this.quizId, 'questions']).then();
+        });
     }
 
     getNextChoiceNumber(): string {

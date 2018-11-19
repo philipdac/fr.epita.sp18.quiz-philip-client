@@ -22,7 +22,7 @@
             </mat-select>
         </mat-form-field>
 
-        <div class="field width-20" style="align-items: center;">
+        <div class="field width-50" style="align-items: center;">
             <label>Is this a correct choice ?</label>
             <mat-radio-group [(ngModel)]="choice.correctChoice" required>
                 <mat-radio-button [value]="true" class="ml-md">Yes</mat-radio-button>
@@ -44,7 +44,7 @@
     <div class="flex">
         <mat-form-field class="field width-100">
             <textarea matInput
-                      rows="3"
+                      rows="2"
                       [(ngModel)]="choice.description"
                       placeholder="Description of this choice"
                       required></textarea>
