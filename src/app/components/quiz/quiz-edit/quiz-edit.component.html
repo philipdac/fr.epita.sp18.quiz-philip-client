@@ -27,27 +27,10 @@
                    placeholder="Teacher (read only)"/>
         </mat-form-field>
 
-        <div *ngIf="quiz.questions">
-            <span>This quiz has:</span><br>
-            <span class="ml-lg"> {{quiz.questions.length}} question(s)</span><br>
-            <span class="ml-lg"> {{quiz.exams.length}} related exam(s)</span>
-        </div>
-
-        <!--<mat-form-field>-->
-        <!--<mat-select [(ngModel)]="quiz.shuffleType"-->
-        <!--placeholder="Shuffle type"-->
-        <!--required>-->
-        <!--<mat-option *ngFor="let option of shuffleTypes"-->
-        <!--[value]="option.key">-->
-        <!--{{ option.value }}-->
-        <!--</mat-option>-->
-        <!--</mat-select>-->
-        <!--</mat-form-field>-->
-
     </div>
 </mat-dialog-content>
 
-<mat-dialog-actions fxLayoutAlign="end center">
+<mat-dialog-actions>
     <button mat-raised-button
             (click)="save()"
             [disabled]="!quiz.title || quiz.duration <= 0"

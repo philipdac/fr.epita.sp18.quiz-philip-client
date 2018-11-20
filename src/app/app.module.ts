@@ -55,6 +55,8 @@ import { QuestionListComponent } from './components/question/question-list/quest
 import { QuestionEditComponent } from './components/question/question-edit/question-edit.component';
 import { QuestionListTableComponent } from './components/question/question-list-table/question-list-table.component';
 import { QuestionEditChoiceComponent } from './components/question/question-edit-choice/question-edit-choice.component';
+import { ExamListComponent } from './components/exam/exam-list/exam-list.component';
+import { ExamEditComponent } from './components/exam/exam-edit/exam-edit.component';
 
 @NgModule({
     declarations: [
@@ -74,6 +76,8 @@ import { QuestionEditChoiceComponent } from './components/question/question-edit
         QuestionEditComponent,
         QuestionListTableComponent,
         QuestionEditChoiceComponent,
+        ExamListComponent,
+        ExamEditComponent,
     ],
     imports: [
         BrowserModule,

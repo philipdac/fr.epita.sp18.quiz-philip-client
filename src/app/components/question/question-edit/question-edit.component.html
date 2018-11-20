@@ -88,16 +88,15 @@
             <textarea matInput
                       rows="10"
                       [(ngModel)]="question.content"
+                      (ngModelChange)="viewMarkdown()"
                       placeholder="Question content in Markdown format"></textarea>
         </mat-form-field>
 
-        <mat-form-field class="field width-50">
-            <textarea matInput
-                      rows="10"
-                      [ngModel]="viewMarkdown(question.content)"
-                      placeholder="Student's view"
-                      [readonly]="true"></textarea>
-        </mat-form-field>
+        <div class="field width-50 field-label-group">
+            <label class="field-label">Student's view</label>
+            <div id="htmlContent"></div>
+        </div>
+
     </div>
 </mat-card>
 

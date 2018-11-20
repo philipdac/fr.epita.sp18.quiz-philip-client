@@ -28,7 +28,9 @@
                             },
                             "src/styles.css"
                         ],
-                        "scripts": []
+                        "scripts": [
+                            "node_modules/showdown/dist/showdown.min.js"
+                        ]
                     },
                     "configurations": {
                         "production": {

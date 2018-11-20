@@ -3,6 +3,8 @@ import { Title } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
+import showdown from 'showdown';
+
 import { NotifyService } from 'app/services/notify.service';
 import { QuestionDataService } from 'app/services/question-data.service';
 import { User } from 'app/common/user';
@@ -14,7 +16,6 @@ import { ScoringTypes } from 'app/common/scoring-type';
 import { QuestionChoice } from 'app/models/question-choice';
 import { QuizDataService } from 'app/services/quiz-data.service';
 import { ChoiceNumbers } from 'app/common/choice-number';
-import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
     selector: 'app-question-edit',
@@ -35,6 +36,9 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
     choiceNumbers: KeyValuePair[];
     questionTypes: KeyValuePair[];
     scoringTypes: KeyValuePair[];
+
+    converter = new showdown.Converter();
+    htmlContent: Element;
 
     inputErrMsg = '';
 
@@ -61,6 +65,8 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this._title.setTitle('Edit question');
+        this.htmlContent = document.getElementById('htmlContent');
+
         this.getData();
     }
 
@@ -79,6 +85,7 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
                         if (this.questionId <= 0) {
                             this.question = new Question();
                             this.question.quiz = this.quiz;
+
                             console.log('new question', this.quiz);
                             return;
                         }
@@ -87,6 +94,8 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
                             .get(this.questionId)
                             .subscribe(respQuest => {
                                 this.question = respQuest as Question;
+                                this.viewMarkdown();
+
                                 console.log('got question', this.question);
                             });
                     });
@@ -102,8 +111,8 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
         this.routeObservable.unsubscribe();
     }
 
-    viewMarkdown(content): string {
-        return content;
+    viewMarkdown(): void {
+        this.htmlContent.innerHTML = this.converter.makeHtml(this.question.content);
     }
 
     newQuestion(): void {
@@ -150,6 +159,11 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
     }
 
     isValidQuestion(): boolean {
+
+        if (!this.question.quiz.quizId) {
+            this.inputErrMsg = 'Missing connection with server. Please refresh your page and try again!';
+            return false;
+        }
 
         if (!this.question.typeId) {
             this.inputErrMsg = 'Please select a question type!';
@@ -257,7 +271,7 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
 
     deleteQuestion(): void {
         if (!this.question.questionId) {
-            this._notify.warning('You can not delete a new question. Please go back to the list if you do not need this question!')
+            this._notify.warning('You can not delete a new question. Please go back to the list if you do not need this question!');
             return;
         }
         this._dataQuest.delete(this.question.questionId).then(resp => {

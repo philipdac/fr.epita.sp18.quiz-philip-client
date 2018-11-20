@@ -1,0 +1,9 @@
+.field-label-group {
+    flex-direction: column;
+    justify-content: start;
+}
+
+.field-label {
+    color: rgba(0, 0, 0, .54);
+    font-size: small;
+}
