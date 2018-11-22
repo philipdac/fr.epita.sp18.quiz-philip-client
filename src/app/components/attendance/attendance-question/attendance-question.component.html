@@ -1,3 +1,41 @@
-<p>
-  attendance-question works!
-</p>
+<mat-card class="dashboard-card">
+    <h3 class=" field">Question {{index}}
+        <span class="mat-subheading-2 ml-lg">{{getQuestionTypeDesc(question.typeId)}}</span>
+    </h3>
+
+    <div class="flex field">
+        {{question.title}}
+    </div>
+
+    <div id="htmlContent{{index}}" class="flex field">
+        {{question.content}}
+    </div>
+
+    <div class="single-row" *ngIf="question.typeId === 'OPEN_QUESTION'">
+        <h5 class="field mb-none">Type your answer here:</h5>
+
+        <mat-form-field class="field width-100">
+            <textarea matInput
+                      rows="5"
+                      [(ngModel)]="question.title"></textarea>
+        </mat-form-field>
+    </div>
+
+    <div class="single-row" *ngIf="question.typeId !== 'OPEN_QUESTION'">
+        <h5 class="field">Select your answer here:</h5>
+
+        <div class="flex field"
+             *ngFor="let choice of question.choices; let optionNum = index">
+            <mat-checkbox
+                (change)="clickThisChoice(choice)"
+                class="ml-md mb-md">
+                {{choice.description}}
+            </mat-checkbox>
+        </div>
+    </div>
+
+    <div class="flex field mt-md">
+        <button mat-stroked-button>Answer this question</button>
+    </div>
+</mat-card>
+

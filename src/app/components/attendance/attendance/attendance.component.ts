@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
-import { User } from 'app/common/user';
 import { Title } from '@angular/platform-browser';
 
+import { User } from 'app/common/user';
 import { NotifyService } from 'app/services/notify.service';
 import { AttendanceDataService } from 'app/services/attendance-data.service';
 
@@ -61,7 +60,6 @@ export class AttendanceComponent implements OnInit {
                     this.attendance = new Attendance();
                     this.initMessage = resp['errorMessage'];
                 }
-
             });
     }
 }

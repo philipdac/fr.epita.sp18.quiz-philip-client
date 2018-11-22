@@ -1,0 +1,8 @@
+.single-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.single-row > * {
+    width: 100%;
+}
