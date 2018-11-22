@@ -57,6 +57,9 @@ import { QuestionListTableComponent } from './components/question/question-list-
 import { QuestionEditChoiceComponent } from './components/question/question-edit-choice/question-edit-choice.component';
 import { ExamListComponent } from './components/exam/exam-list/exam-list.component';
 import { ExamEditComponent } from './components/exam/exam-edit/exam-edit.component';
+import { AttendanceComponent } from './components/attendance/attendance/attendance.component';
+import { AttendanceLoadingComponent } from './components/attendance/attendance-loading/attendance-loading.component';
+import { AttendanceQuestionComponent } from './components/attendance/attendance-question/attendance-question.component';
 
 @NgModule({
     declarations: [
@@ -78,6 +81,9 @@ import { ExamEditComponent } from './components/exam/exam-edit/exam-edit.compone
         QuestionEditChoiceComponent,
         ExamListComponent,
         ExamEditComponent,
+        AttendanceComponent,
+        AttendanceLoadingComponent,
+        AttendanceQuestionComponent,
     ],
     imports: [
         BrowserModule,

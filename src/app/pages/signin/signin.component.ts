@@ -63,7 +63,7 @@ export class SignInComponent implements OnInit {
         localStorage.setItem(Constant.tokenKey, '1234567890');
         localStorage.setItem(Constant.userType, 'student');
 
-        this.router.navigateByUrl('/attend?room=' + this.examRoom.value).then();
+        this.router.navigateByUrl('/attendance?room=' + this.examRoom.value).then();
     }
 
     signIn(devMode = true) {

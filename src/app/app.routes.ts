@@ -12,8 +12,11 @@ import {QuizListComponent} from 'app/components/quiz/quiz-list/quiz-list.compone
 import {QuestionListComponent} from './components/question/question-list/question-list.component';
 import {QuestionEditComponent} from './components/question/question-edit/question-edit.component';
 
+import { AttendanceComponent } from 'app/components/attendance/attendance/attendance.component';
+
 export const RouteDef = [
     {path: 'readme', component: ReadmeComponent},
+    {path: 'attendance', component: AttendanceComponent},
 
     {path: 'identities/:uid', component: IdentityEditComponent},
     {path: 'identities', component: IdentityListComponent},
