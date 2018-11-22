@@ -3,14 +3,24 @@
         <h3>User : {{user.userName}}</h3>
         <span class="fill-space"></span>
         <div class="button-row">
-            <a class="ml-md"
+            <a *ngIf="user.userType === 'student'"
+                class="ml-md"
+               mat-raised-button
+               routerLink="/quizzes">
+                <mat-icon>send</mat-icon>
+                Submit the exam
+            </a>
+            <a *ngIf="user.userType === 'teacher'"
+                class="ml-md"
                mat-raised-button
                routerLink="/quizzes">
                 <mat-icon>format_list_numbered</mat-icon>
                 Quizzes
             </a>
-            <a class="ml-md"
+            <a *ngIf="user.userType === 'teacher'"
+                class="ml-md"
                mat-raised-button
+               disabled="true"
                routerLink="/identities">
                 <mat-icon>group</mat-icon>
                 Identities

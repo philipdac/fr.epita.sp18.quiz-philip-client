@@ -78,7 +78,7 @@
             <textarea matInput
                       rows="2"
                       [(ngModel)]="question.title"
-                      placeholder="Question title"
+                      placeholder="Question title (topic description, difficulty level, ...)"
                       required></textarea>
         </mat-form-field>
     </div>
@@ -89,7 +89,7 @@
                       rows="10"
                       [(ngModel)]="question.content"
                       (ngModelChange)="viewMarkdown()"
-                      placeholder="Question content in Markdown format"></textarea>
+                      placeholder="Question content (can be in Markdown format)"></textarea>
         </mat-form-field>
 
         <div class="field width-50 field-label-group">
@@ -108,3 +108,14 @@
                               (updateScore)="sumChoiceScore()"
     ></app-question-edit-choice>
 </div>
+
+<mat-card>
+    <div class="flex">
+        <mat-form-field class="field width-100">
+            <textarea matInput
+                      rows="4"
+                      [(ngModel)]="question.answer"
+                      placeholder="Explanation or answer to the question"></textarea>
+        </mat-form-field>
+    </div>
+</mat-card>

@@ -1,13 +1,13 @@
 .mat-column-select,
 .mat-column-id{
-    flex: 0 0 60px;
+    flex: 0 0 80px;
 }
 
 .mat-column-question,
 .mat-column-exam,
 .mat-column-duration,
 .mat-column-teacher{
-    flex: 0 0 120px;
+    flex: 0 0 180px;
 }
 
 .mat-column-title{

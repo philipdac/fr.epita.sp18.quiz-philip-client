@@ -13,29 +13,29 @@
             <p *ngIf="questions.length">Select a question to edit / delete it</p>
 
             <button mat-raised-button
-                    (click)="edit(0)"
+                    (click)="editQuestion(0)"
                     aria-label="New question">
                 New question
             </button>
 
             <button mat-raised-button
-               (click)="edit(selectedRow.questionId)"
-               [disabled]="selectedRow.questionId <=0"
-               class="ml-lg"
-               aria-label="Edit question">
+                    (click)="editQuestion(selectedQuestion.questionId)"
+                    [disabled]="selectedQuestion.questionId <=0"
+                    class="ml-lg"
+                    aria-label="Edit question">
                 Edit question
             </button>
 
             <button mat-raised-button
-                    (click)="delete(selectedRow.questionId)"
-                    [disabled]="selectedRow.questionId <=0"
+                    (click)="deleteQuestion(selectedQuestion.questionId)"
+                    [disabled]="selectedQuestion.questionId <=0"
                     class="ml-md"
                     aria-label="Delete question">
                 Delete question
             </button>
 
             <mat-card-content class="dashboard-card-content">
-                <app-question-list-table (eventSelectRow)="eventSelectRow($event)"
+                <app-question-list-table (eventSelectRow)="eventSelectQuestion($event)"
                                          [questions]="questions"></app-question-list-table>
             </mat-card-content>
 
@@ -45,28 +45,37 @@
             <p>Select an exam to manage it</p>
 
             <button mat-raised-button
-                    (click)="edit(0)"
+                    (click)="editExam(0)"
                     aria-label="New exam">
                 New exam
             </button>
 
-               <!--[routerLink]="['/quizzes', quizId, 'exams', selectedRow.examId]"-->
-               <!--[disabled]="selectedRow.examId <=0"-->
-            <a mat-raised-button
-               class="ml-lg"
-               aria-label="Edit exam">
-                Edit exam
-            </a>
-
-                    <!--(click)="delete(selectedRow.examId)"-->
-                    <!--[disabled]="selectedRow.examId <=0"-->
             <button mat-raised-button
+                    (click)="editExam(selectedExam.examId)"
+                    [disabled]="selectedExam.examId <=0"
+                    class="ml-lg"
+                    aria-label="Edit exam">
+                Edit exam
+            </button>
+
+            <button mat-raised-button
+                    (click)="deleteExam(selectedExam.examId)"
+                    [disabled]="selectedExam.examId <=0"
                     class="ml-md"
                     aria-label="Delete exam">
                 Delete exam
             </button>
 
+            <button mat-raised-button
+                    [disabled]="selectedExam.examId <=0 || true"
+                    class="ml-lg"
+                    aria-label="Attendance list">
+                Attendance list
+            </button>
+
             <mat-card-content class="dashboard-card-content">
+                <app-exam-list (eventSelectRow)="eventSelectExam($event)"
+                               [exams]="exams"></app-exam-list>
             </mat-card-content>
 
         </mat-tab>

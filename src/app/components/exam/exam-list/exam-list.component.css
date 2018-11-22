@@ -1,0 +1,5 @@
+.mat-column-select,
+.mat-column-id
+{
+    flex: 0 0 80px;
+}

@@ -1,0 +1,62 @@
+<h2 mat-dialog-title class="mb-none">{{exam.examId > 0 ? "Exam editing" : "Create a new exam"}}</h2>
+
+<mat-dialog-content>
+    <div class="single-row">
+
+        <mat-form-field>
+            <input matInput
+                   type="text"
+                   [(ngModel)]="exam.examDesc"
+                   placeholder="Description"
+                   required/>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput
+                   type="text"
+                   [(ngModel)]="exam.examRoom"
+                   placeholder="Room name"
+                   required/>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-select [(ngModel)]="exam.examStatus"
+                        placeholder="Status"
+                        required>
+                <mat-option *ngFor="let option of examStatuses"
+                            [value]="option.key">
+                    {{ option.value }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-select [(ngModel)]="exam.shuffleType"
+                        placeholder="Shuffle type"
+                        required>
+                <mat-option *ngFor="let option of shuffleTypes"
+                            [value]="option.key">
+                    {{ option.value }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-raised-button
+            (click)="save()"
+            [disabled]="!exam.examDesc || !exam.examRoom"
+            aria-label="Save exam">
+        Save
+    </button>
+
+    <button mat-raised-button
+            (click)="close()"
+            class="ml-md"
+            aria-label="Close">
+        Close
+    </button>
+
+</mat-dialog-actions>

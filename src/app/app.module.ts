@@ -123,7 +123,7 @@ import { ExamEditComponent } from './components/exam/exam-edit/exam-edit.compone
         NotifyService
     ],
     bootstrap: [AppComponent],
-    entryComponents: [DialogConfirmCancelComponent, QuizEditComponent]
+    entryComponents: [DialogConfirmCancelComponent, QuizEditComponent, ExamEditComponent]
 })
 export class AppModule {
 }

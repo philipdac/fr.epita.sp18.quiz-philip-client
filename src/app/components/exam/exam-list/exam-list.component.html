@@ -7,7 +7,7 @@
             <mat-header-cell *matHeaderCellDef>Select</mat-header-cell>
             <mat-cell *matCellDef="let row">
                 <mat-checkbox disabled=true
-                              [checked]="selectedRow.questionId === row.questionId">
+                              [checked]="selectedRow.examId === row.examId">
                 </mat-checkbox>
             </mat-cell>
         </ng-container>
@@ -16,41 +16,48 @@
             <mat-header-cell *matHeaderCellDef
                              mat-sort-header>Id
             </mat-header-cell>
-            <mat-cell *matCellDef="let row">{{row.questionId}}</mat-cell>
+            <mat-cell *matCellDef="let row">{{row.examId}}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="title">
+        <ng-container matColumnDef="desc">
             <mat-header-cell *matHeaderCellDef
                              mat-sort-header>Title
             </mat-header-cell>
-            <mat-cell *matCellDef="let row">{{row.title}}</mat-cell>
+            <mat-cell *matCellDef="let row">{{row.examDesc}}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="type">
+        <ng-container matColumnDef="room">
             <mat-header-cell *matHeaderCellDef
-                             mat-sort-header>MCQ Type
+                             mat-sort-header>Room type
             </mat-header-cell>
-            <mat-cell *matCellDef="let row">{{getQuestionTypeDesc(row.typeId)}}</mat-cell>
+            <mat-cell *matCellDef="let row">{{row.examRoom}}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="score">
+        <ng-container matColumnDef="status">
             <mat-header-cell *matHeaderCellDef
-                             mat-sort-header>Score
+                             mat-sort-header>Status
             </mat-header-cell>
-            <mat-cell *matCellDef="let row">{{row.score}}</mat-cell>
+            <mat-cell *matCellDef="let row">{{getExamStatusDesc(row.examStatus)}}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="choice">
+        <ng-container matColumnDef="shuffle">
             <mat-header-cell *matHeaderCellDef
-                             mat-sort-header>Number of choices
+                             mat-sort-header>Shuffle type
             </mat-header-cell>
-            <mat-cell *matCellDef="let row">{{row.choices.length}}</mat-cell>
+            <mat-cell *matCellDef="let row">{{getShuffleTypeDesc(row.shuffleType)}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="attendance">
+            <mat-header-cell *matHeaderCellDef
+                             mat-sort-header>Attendant count
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row"></mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"
                  (click)="$event.stopPropagation(); selectRow(row);"
-                 [style.background]="selectedRow.questionId === row.questionId ? 'lightgray' : ''"
+                 [style.background]="selectedRow.examId === row.examId ? 'lightgray' : ''"
                  class="mouse-pointer"></mat-row>
 
     </mat-table>

@@ -3,8 +3,8 @@ import {FormControl, Validators} from '@angular/forms';
 import {Router, ActivatedRoute} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 
-import {AuthService} from '../../auth/auth.service';
-import {Constant} from '../../common/constant';
+import {AuthService} from 'app/auth/auth.service';
+import {Constant} from 'app/common/constant';
 
 @Component({
     selector: 'app-signin',
@@ -12,9 +12,8 @@ import {Constant} from '../../common/constant';
     styleUrls: ['./signin.component.css']
 })
 export class SignInComponent implements OnInit {
-    quizRooms: any;
 
-    quizRoom = new FormControl('JAVA', [
+    examRoom = new FormControl('JAVA', [
         Validators.required
     ]);
     studentEmail = new FormControl('student@email.com', [
@@ -58,7 +57,13 @@ export class SignInComponent implements OnInit {
     }
 
     startQuiz() {
-        this.router.navigateByUrl('/exam');
+        localStorage.setItem(Constant.userId, '99');
+        localStorage.setItem(Constant.userName, this.studentEmail.value);
+        localStorage.setItem(Constant.expiredKey, (new Date('2100-01-01').toISOString()));
+        localStorage.setItem(Constant.tokenKey, '1234567890');
+        localStorage.setItem(Constant.userType, 'student');
+
+        this.router.navigateByUrl('/attend?room=' + this.examRoom.value).then();
     }
 
     signIn(devMode = true) {
@@ -75,6 +80,7 @@ export class SignInComponent implements OnInit {
             localStorage.setItem(Constant.userName, 'teacher@email.com');
             localStorage.setItem(Constant.expiredKey, (new Date('2100-01-01').toISOString()));
             localStorage.setItem(Constant.tokenKey, '1234567890');
+            localStorage.setItem(Constant.userType, 'teacher');
 
             this.router.navigateByUrl(this.returnUrl);
             return;
