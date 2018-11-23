@@ -7,6 +7,5 @@ export class ExamQuestion {
     content = '';
     typeId = '';
     score = 0;
-    choices = new ExamQuestionChoice();
-    answers = new ExamQuestionAnswer();
+    choices: ExamQuestionChoice[] = [];
 }

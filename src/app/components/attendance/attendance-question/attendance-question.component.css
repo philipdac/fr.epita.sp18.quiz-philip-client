@@ -6,3 +6,7 @@
 .single-row > * {
     width: 100%;
 }
+
+.content-item {
+    padding-bottom: 10px;
+}

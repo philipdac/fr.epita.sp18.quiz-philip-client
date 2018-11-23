@@ -17,7 +17,8 @@
         <mat-form-field class="field width-100">
             <textarea matInput
                       rows="5"
-                      [(ngModel)]="question.title"></textarea>
+                      placeholder=""
+                      [(ngModel)]="question.choices[0].openAnswer"></textarea>
         </mat-form-field>
     </div>
 
@@ -27,6 +28,7 @@
         <div class="flex field"
              *ngFor="let choice of question.choices; let optionNum = index">
             <mat-checkbox
+                [(ngModel)]="choice.selected"
                 (change)="clickThisChoice(choice)"
                 class="ml-md mb-md">
                 {{choice.description}}
@@ -35,7 +37,7 @@
     </div>
 
     <div class="flex field mt-md">
-        <button mat-stroked-button>Answer this question</button>
+        <button mat-stroked-button (click)="submitAnswer()" [disabled]="!submittableAnswer()">Answer this question</button>
     </div>
 </mat-card>
 

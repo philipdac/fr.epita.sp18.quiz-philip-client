@@ -8,6 +8,6 @@
         by {{attendance.endTime | date: "h:mm a, d/M/y"}}</p>
 
     <div *ngFor="let question of attendance.questions; let idx=index">
-        <app-attendance-question [index]="idx+1" [question]="question"></app-attendance-question>
+        <app-attendance-question [index]="idx+1" [attendanceId]="attendance.attendanceId" [question]="question"></app-attendance-question>
     </div>
 </div>

@@ -8,5 +8,5 @@ export class Attendance {
     startTime = '';
     endTime = '';
 
-    questions = new ExamQuestion();
+    questions: ExamQuestion[] = [];
 }

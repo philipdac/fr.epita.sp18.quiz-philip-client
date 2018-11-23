@@ -22,13 +22,13 @@ export class AttendanceComponent implements OnInit {
     initMessage = 'getting data...';
 
     user: User;
-    attdObservable: any;
+    subsAttend: any;
 
     constructor(
         private _title: Title,
         private _route: ActivatedRoute,
         private _notify: NotifyService,
-        private _dataAttd: AttendanceDataService,
+        private _dataAttend: AttendanceDataService,
     ) {
         this.user = new User();
         this.attendance = new Attendance();
@@ -50,7 +50,7 @@ export class AttendanceComponent implements OnInit {
         attendRequest.email = this.user.userName;
         attendRequest.examRoom = this.examRoom;
 
-        this.attdObservable = this._dataAttd
+        this.subsAttend = this._dataAttend
             .create(attendRequest)
             .subscribe(resp => {
                 console.log('got attd', resp);
