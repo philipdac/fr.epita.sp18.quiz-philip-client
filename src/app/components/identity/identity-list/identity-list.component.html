@@ -9,8 +9,8 @@
     </a>
 
     <a mat-raised-button
-       routerLink="/identities/{{selectedRow.uid}}"
-       [disabled]="selectedRow.uid <= 0"
+       routerLink="/identities/{{selectedRow.id}}"
+       [disabled]="selectedRow.id <= 0"
        class="ml-md"
        aria-label="Edit identity">
         Edit
@@ -18,7 +18,7 @@
 
     <button mat-raised-button
             (click)="deleteIdentity()"
-            [disabled]="selectedRow.uid <=0"
+            [disabled]="selectedRow.id <=0"
             class="ml-md"
             aria-label="Delete identity">
         Delete

@@ -13,6 +13,7 @@ import { Exam } from 'app/models/exam';
 import { ExamDataService } from 'app/services/exam-data.service';
 import { QuizEditComponent } from 'app/components/quiz/quiz-edit/quiz-edit.component';
 import { ExamEditComponent } from 'app/components/exam/exam-edit/exam-edit.component';
+import { Attendance } from 'app/models/attendance';
 
 @Component({
     selector: 'app-question-list',
@@ -110,7 +111,11 @@ export class QuestionListComponent implements OnInit, OnDestroy {
 
     deleteExam(examId: number): void {
         this._dataExam.delete(examId).then(resp => {
-            this.getData();
+            if (!resp['hasError']) {
+                this.getData();
+            } else {
+                this._notify.error(resp['errorMessage']);
+            }
         });
     }
 

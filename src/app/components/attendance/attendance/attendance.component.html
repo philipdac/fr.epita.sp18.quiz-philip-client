@@ -1,13 +1,25 @@
+<div *ngIf="reviewMode">
+    <p>Getting exam result data...</p>
+    <p>Sorry! The feature "Showing exam result" is under CONSTRUCTION</p>
+</div>
+
 <app-attendance-loading *ngIf="!attendance.attendanceId" [initMessage]="initMessage"></app-attendance-loading>
 
-<div *ngIf="attendance.attendanceId">
+<div *ngIf="attendance.attendanceId  && !reviewMode">
 
     <h1 class="mat-h1">{{attendance.title}}</h1>
 
     <p>You are going to complete {{attendance.questions.length}} questions in {{attendance.duration}} minutes
         by {{attendance.endTime | date: "h:mm a, d/M/y"}}</p>
 
+    <button mat-raised-button
+            (click)="submitExam()">
+        <mat-icon>send</mat-icon>
+        Submit the exam
+    </button>
+
     <div *ngFor="let question of attendance.questions; let idx=index">
-        <app-attendance-question [index]="idx+1" [attendanceId]="attendance.attendanceId" [question]="question"></app-attendance-question>
+        <app-attendance-question [index]="idx+1" [attendanceId]="attendance.attendanceId"
+                                 [question]="question"></app-attendance-question>
     </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
@@ -16,10 +16,12 @@ import { AttendRequest } from 'app/models/attend-request';
     styleUrls: ['./attendance.component.css'],
     providers: [AttendanceDataService, NotifyService]
 })
-export class AttendanceComponent implements OnInit {
+export class AttendanceComponent implements OnInit, OnDestroy {
     examRoom = '';
     attendance: Attendance;
     initMessage = 'getting data...';
+
+    reviewMode = false;
 
     user: User;
     subsAttend: any;
@@ -37,6 +39,10 @@ export class AttendanceComponent implements OnInit {
     ngOnInit() {
         this._title.setTitle('Taking an exam');
         this.getData();
+    }
+
+    ngOnDestroy(): void {
+        this.subsAttend.unsubscribe();
     }
 
     getData(): void {
@@ -61,5 +67,9 @@ export class AttendanceComponent implements OnInit {
                     this.initMessage = resp['errorMessage'];
                 }
             });
+    }
+
+    submitExam(): void {
+        this.reviewMode = true;
     }
 }

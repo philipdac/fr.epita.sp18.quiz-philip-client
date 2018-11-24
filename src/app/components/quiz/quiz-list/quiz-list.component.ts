@@ -56,6 +56,13 @@ export class QuizListComponent implements OnInit, OnDestroy {
     }
 
     delete(quizId: number): void {
+        this._data.delete(this.selectedRow.quizId).then(resp => {
+            if (!resp['hasError']) {
+                this.getData();
+            } else {
+                this._notify.error(resp['errorMessage']);
+            }
+        });
     }
 
     edit(quizId: number): void {
@@ -65,7 +72,7 @@ export class QuizListComponent implements OnInit, OnDestroy {
             quiz.quizId = quizId;
             quiz.title = ' getting data...';
         }
-        quiz.teacherId = this.user.userId;
+        quiz.teacher.id = this.user.userId;
 
         const dialogRef = this._dialog.open(QuizEditComponent, {
             minHeight: '320px',

@@ -54,6 +54,8 @@ export class QuizEditComponent implements OnInit {
             // update existing quiz
             save = this._data.update(this.quiz.quizId, this.quiz);
         } else {
+            this.quiz.teacher.id = this.user.userId;
+            this.quiz.teacher.email = this.user.userName;
             // create a new quiz
             save = this._data.create(this.quiz);
         }
